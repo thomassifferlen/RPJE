@@ -35,20 +35,11 @@ class DisplayManager
   		this.tilesIMG_Array["grass"] = new Image();
   		this.tilesIMG_Array["grass"].src = pathFolder + "grass.png";
 
-      this.tilesIMG_Array["objects_bigtree_1"] = new Image();
-      this.tilesIMG_Array["objects_bigtree_1"].src = pathFolder + "objects_bigtree_1.png";
+      this.tilesIMG_Array["objects_fence_1"] = new Image();
+      this.tilesIMG_Array["objects_fence_1"].src = pathFolder + "objects_fence_1.png";
 
-      this.tilesIMG_Array["objects_bigtree_2"] = new Image();
-      this.tilesIMG_Array["objects_bigtree_2"].src = pathFolder + "objects_bigtree_2.png";
-
-      this.tilesIMG_Array["objects_bigtree_3"] = new Image();
-      this.tilesIMG_Array["objects_bigtree_3"].src = pathFolder + "objects_bigtree_3.png";
-
-      this.tilesIMG_Array["objects_plant_1"] = new Image();
-      this.tilesIMG_Array["objects_plant_1"].src = pathFolder + "objects_plant_1.png";
-
-      this.tilesIMG_Array["objects_plant_2"] = new Image();
-      this.tilesIMG_Array["objects_plant_2"].src = pathFolder + "objects_plant_2.png";
+      this.tilesIMG_Array["objects_fence_2"] = new Image();
+      this.tilesIMG_Array["objects_fence_2"].src = pathFolder + "objects_fence_2.png";
 
       //Player
 
@@ -132,23 +123,23 @@ class DisplayManager
               break;
 
               case 1:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_plant_1"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_TWO);
+                  this.ctx.drawImage(this.tilesIMG_Array["objects_fence_1"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_TWO);
               break;
 
               case 2:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_plant_2"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_TWO);
+                  this.ctx.drawImage(this.tilesIMG_Array["objects_fence_2"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_TWO);
               break;
 
               case 3:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_bigtree_1"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_THREE);
+                  //this.ctx.drawImage(this.tilesIMG_Array["objects_bigtree_1"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_THREE);
               break;
 
               case 4:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_bigtree_2"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_THREE);
+                  //this.ctx.drawImage(this.tilesIMG_Array["objects_bigtree_2"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_THREE);
               break;
 
               case 5:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_bigtree_3"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_THREE);
+                  //this.ctx.drawImage(this.tilesIMG_Array["objects_bigtree_3"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_THREE);
               break;
 
               case -1:

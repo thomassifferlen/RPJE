@@ -52,7 +52,7 @@ class RPJE_Engine
 	      }
 	    }
 
-	    this.world[0][0] = '{"mapTiles":["0-0-1","0-8-1","5-7-1"],"mapObjects":["3-3-1","5-4-2","5-1-3","6-1-4","7-1-5","8-1-3","9-1-4","10-1-5"]}';
+	    this.world[0][0] = '{"mapTiles":["0-0-1","0-8-1","5-7-1"],"mapObjects":["3-3-1","5-4-2"]}';
 
 	    this.currentMap.loadMapJSON(this.world[0][0]);
 
