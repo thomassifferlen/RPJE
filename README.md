@@ -2,7 +2,8 @@
 [ Work in Progress ] HTML/CSS/JS Canvas RPG engine - Role Playing Javascript Engine
 
 ## Preview
-[Comming Soon]
+![img_preview](https://raw.githubusercontent.com/thomassifferlen/RPJE/master/GitHub/RPJE.png)  
+(The red box is a temporary player sprite)  
 
 ## How to use ?
 [Comming Soon]  
