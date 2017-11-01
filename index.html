@@ -1,10 +1,14 @@
 <head>
+	<script type='text/javascript' src='Libs/jquery-3.2.1.min.js'></script>
+	<script type="text/javascript" src='Libs/SimpleJoystick.js'></script>
+	<script type="text/javascript" src="Engine/ActionsManager.js"></script>
+
 	<script type="text/javascript" src="Tools/PairStruct.js"></script>
 	<script type="text/javascript" src="Engine/Player.js"></script>
 	<script type="text/javascript" src="Engine/Map.js"></script>
 	<script type="text/javascript" src="Display/DisplayManager.js"></script>
 	<script type="text/javascript" src="Engine/Engine.js"></script>
-	<script type="text/javascript" src="Engine/ActionsManager.js"></script>
+
 	<script type="text/javascript" src="RPJE.js"></script>
 
 	<style type="text/css">
@@ -20,11 +24,61 @@
 			margin : 0;
 		}
 
+		.JoystickMain
+		{
+			width: 150px;
+			height: 150px;
+			background-color: black;
+			opacity : 0.6;
+			border-radius: 50%;
+		}
+
+		.Joystick
+		{
+			width: 50px;
+			height: 50px;
+
+			position: relative;
+			background-color: white;
+			border: black 1px solid;
+			border-radius: 50%;
+			opacity : 0.5;
+		}
+
+		.JoystickZone
+		{
+			position: absolute;
+			bottom: 15%;
+			left: 10%;
+		}
+
+		.noselect
+		{
+		  -webkit-touch-callout: none; /* iOS Safari */
+		    -webkit-user-select: none; /* Safari */
+		     -khtml-user-select: none; /* Konqueror HTML */
+		       -moz-user-select: none; /* Firefox */
+		        -ms-user-select: none; /* Internet Explorer/Edge */
+		            user-select: none; /* Non-prefixed version, currently
+		                                  supported by Chrome and Opera */
+		}
+
 	</style>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
 </head>
 
 <body onload="main()">
 	<canvas id="Game">
 		
 	</canvas>
+
+	<div class="JoystickZone noselect">
+		<div class="JoystickMain" id="JoystickMain">
+			<div class="Joystick" id="Joystick">
+			</div>
+		</div>
+	</div>
 </body>
+

@@ -41,46 +41,97 @@ class Player
   {
     if(this.is_Moving)
     {
+        var tmpspeedX = this.speed;
+        var tmpspeedY = this.speed;
 
-        switch(this.direction)
+        if( is_JoystickEnabled() )
         {
-            case PLAYER_DIRECTION_UP:
+            var JoyX = GetJoystick_X_Percent();
+            var JoyY = GetJoystick_Y_Percent();
 
-                if(targetMap.isWalkableTile(Math.floor((this.position.x + (GameConfig.tileSize / 2))/GameConfig.tileSize),Math.floor(((this.position.y + (GameConfig.tileSize / 2)) - this.speed)/GameConfig.tileSize)))
+
+            tmpspeedX = Math.floor((4 * JoyX) / 100);
+            tmpspeedY = Math.floor((4 * JoyY) / 100);
+
+            if(targetMap.isWalkableTile(Math.floor((this.position.x + (GameConfig.tileSize / 2))/GameConfig.tileSize),Math.floor(((this.position.y + (GameConfig.tileSize / 2))  + tmpspeedY)/GameConfig.tileSize)))
+            {
+                this.position.y += tmpspeedY;
+            }
+
+            if(targetMap.isWalkableTile(Math.floor((this.position.x + (GameConfig.tileSize / 2) + tmpspeedX)/GameConfig.tileSize),Math.floor((this.position.y + (GameConfig.tileSize / 2)) /GameConfig.tileSize)))
+            {
+                this.position.x += tmpspeedX;
+            }
+
+            if( Math.abs(tmpspeedX) >= Math.abs(tmpspeedY) )
+            {
+                if ( tmpspeedX > 0 )
                 {
-                    this.position.y -= this.speed;
+                    this.direction = PLAYER_DIRECTION_RIGHT;
                 }
-
-            break;
-
-            case PLAYER_DIRECTION_DOWN:
-               
-                if(targetMap.isWalkableTile(Math.floor((this.position.x + (GameConfig.tileSize / 2))/GameConfig.tileSize),Math.floor(((this.position.y + (GameConfig.tileSize / 2))  + this.speed)/GameConfig.tileSize)))
+                else
                 {
-                    this.position.y += this.speed;
+                    this.direction = PLAYER_DIRECTION_LEFT;
                 }
-
-            break;
-
-            case PLAYER_DIRECTION_RIGHT:
-                
-                if(targetMap.isWalkableTile(Math.floor((this.position.x + (GameConfig.tileSize / 2) + this.speed)/GameConfig.tileSize),Math.floor((this.position.y + (GameConfig.tileSize / 2)) /GameConfig.tileSize)))
+            }
+            else
+            {
+                if ( tmpspeedY > 0 )
                 {
-                    this.position.x += this.speed;
+                    this.direction = PLAYER_DIRECTION_DOWN;
                 }
-
-            break;
-
-            case PLAYER_DIRECTION_LEFT:
-
-                if(targetMap.isWalkableTile(Math.floor((this.position.x + (GameConfig.tileSize / 2) - this.speed) /GameConfig.tileSize),Math.floor((this.position.y + (GameConfig.tileSize / 2)) /GameConfig.tileSize)))
+                else
                 {
-                    this.position.x -= this.speed;
+                    this.direction = PLAYER_DIRECTION_UP;
                 }
+            }
 
-            break;
 
         }
+        else
+        {
+            switch(this.direction)
+            {
+                case PLAYER_DIRECTION_UP:
+
+                    if(targetMap.isWalkableTile(Math.floor((this.position.x + (GameConfig.tileSize / 2))/GameConfig.tileSize),Math.floor(((this.position.y + (GameConfig.tileSize / 2)) - tmpspeedY)/GameConfig.tileSize)))
+                    {
+                        this.position.y -= tmpspeedY;
+                    }
+
+                break;
+
+                case PLAYER_DIRECTION_DOWN:
+                   
+                    if(targetMap.isWalkableTile(Math.floor((this.position.x + (GameConfig.tileSize / 2))/GameConfig.tileSize),Math.floor(((this.position.y + (GameConfig.tileSize / 2))  + tmpspeedY)/GameConfig.tileSize)))
+                    {
+                        this.position.y += tmpspeedY;
+                    }
+
+                break;
+
+                case PLAYER_DIRECTION_RIGHT:
+                    
+                    if(targetMap.isWalkableTile(Math.floor((this.position.x + (GameConfig.tileSize / 2) + tmpspeedX)/GameConfig.tileSize),Math.floor((this.position.y + (GameConfig.tileSize / 2)) /GameConfig.tileSize)))
+                    {
+                        this.position.x += tmpspeedX;
+                    }
+
+                break;
+
+                case PLAYER_DIRECTION_LEFT:
+
+                    if(targetMap.isWalkableTile(Math.floor((this.position.x + (GameConfig.tileSize / 2) - tmpspeedX) /GameConfig.tileSize),Math.floor((this.position.y + (GameConfig.tileSize / 2)) /GameConfig.tileSize)))
+                    {
+                        this.position.x -= tmpspeedX;
+                    }
+
+                break;
+
+            }
+        }
+
+        
 
         switch(this.spriteNumber)
         {

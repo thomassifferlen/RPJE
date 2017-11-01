@@ -71,6 +71,19 @@ class RPJE_Engine
 		if(this.is_Ready)
 		{
 			this.UpdateScreen();
+
+			if( is_JoystickEnabled() )
+	        {
+	            if(GetJoystick_X_Percent() != 0 || GetJoystick_Y_Percent() != 0)
+	            {
+	            	this.player.is_Moving = true;
+	            }
+	            else
+	            {
+	            	this.player.is_Moving = false;
+	            }
+	        }
+
 			this.player.Move(this.currentMap,this.config);
 		}
 		else

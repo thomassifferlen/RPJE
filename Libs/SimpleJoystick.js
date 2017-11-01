@@ -12,6 +12,8 @@ var _JoystickHeigth = 0;
 var _PositionX = 0;
 var _PositionY = 0;
 
+var _JoystickMax = 0;
+
 function LoadJoystick()
 {
 	Html_JoystickMain = document.getElementById("JoystickMain");
@@ -30,6 +32,8 @@ function LoadJoystick()
 	_JoystickHeigth = $( "#Joystick" ).height();
 	_JoystickWidth = $( "#Joystick" ).width();
 
+	_JoystickMax = _JoystickMainWidth /2;
+
 	$( "#Joystick" ).css( "left", (_JoystickMainWidth/2 - _JoystickWidth/2).toString() ) ;
 	$( "#Joystick" ).css( "top",  (_JoystickMainHeigth/2 - _JoystickHeigth/2).toString() ) ;
 
@@ -46,8 +50,8 @@ function Joystick_OnTouchEnd()
 	$( "#Joystick" ).css( "left", (_JoystickMainWidth/2 - _JoystickWidth/2).toString() ) ;
 	$( "#Joystick" ).css( "top",  (_JoystickMainHeigth/2 - _JoystickHeigth/2).toString() ) ;
 
-	_PositionX = _JoystickMainWidth/2;
-	_PositionY = _JoystickMainHeigth/2;
+	_PositionX = 0;
+	_PositionY = 0;
 }
 
 function Joystick_OnTouchCancel()
@@ -55,8 +59,8 @@ function Joystick_OnTouchCancel()
 	$( "#Joystick" ).css( "left", (_JoystickMainWidth/2 - _JoystickWidth/2).toString() ) ;
 	$( "#Joystick" ).css( "top",  (_JoystickMainHeigth/2 - _JoystickHeigth/2).toString() ) ;
 
-	_PositionX = _JoystickMainWidth/2;
-	_PositionY = _JoystickMainHeigth/2;
+	_PositionX = 0;
+	_PositionY = 0;
 
 	console.warn("[WARN] touchcancel event -> Joystick position reset");
 }
@@ -89,8 +93,34 @@ function Joystick_OnTouchMove()
 	$( "#Joystick" ).css( "left",  tmpWidth.toString() ) ;
 	$( "#Joystick" ).css( "top",  tmpHeigth.toString() ) ;
 
-	_PositionX = event.touches[0].clientX;
-	_PositionY = event.touches[0].clientY;
+	 _PositionX = event.touches[0].clientX  - $('#JoystickMain').offset().left;
+	 _PositionY = event.touches[0].clientY  - $('#JoystickMain').offset().top;
+
+
+	if( _PositionX > _JoystickMainHeigth)
+	{
+		_PositionX = _JoystickMainHeigth;
+	}
+
+	if( _PositionX <   0)
+	{
+		_PositionX = 0;
+	}
+
+	if( _PositionY > _JoystickMainHeigth)
+	{
+		_PositionY = _JoystickMainHeigth;
+	}
+
+	if( _PositionY <  0)
+	{
+		_PositionY = 0;
+	}
+
+
+	_PositionY -= _JoystickMax;
+	_PositionX -= _JoystickMax;
+
 
 }
 
@@ -98,9 +128,7 @@ function GetJoystick_X()
 {
 	if(JoystickReady)
 	{
-		var realX = _PositionX - _JoystickMainWidth /2;
-
-		return realX;
+		return _PositionX;
 	}
 	else
 	{
@@ -109,27 +137,47 @@ function GetJoystick_X()
 	
 }
 
+function GetJoystick_X_Percent()
+{
+	if(JoystickReady)
+	{
+		return (_PositionX * 100 )/ _JoystickMax ;
+	}
+	else
+	{
+		console.warn("[WARN] GetJoystick_X_Percent -> JoystickReady is set to False - Please launch LoadJoystick function");
+	}
+}
+
+function GetJoystick_Y_Percent()
+{
+	if(JoystickReady)
+	{
+		return (_PositionY * 100 )/ _JoystickMax ;
+	}
+	else
+	{
+		console.warn("[WARN] GetJoystick_Y_Percent -> JoystickReady is set to False - Please launch LoadJoystick function");
+	}
+}
+
 function GetJoystick_Y()
 {
 	if(JoystickReady)
 	{
-		var realy = _PositionY - _JoystickMainHeigth /2;
 
-		if (realy < 0)
-		{
-			realy = realy + (2* Math.abs(realy))
-		}
-		else
-		{
-			realy = - Math.abs(realy);
-		}
-
-		return realy;
+		return _PositionY;
 	}
 	else
 	{
 		console.warn("[WARN] GetJoystick_Y -> JoystickReady is set to False - Please launch LoadJoystick function");
 	}
 }
+
+function GetJoystick_Max()
+{
+	return _JoystickMax;
+}
+
 
 console.log("SimpleJoystick.js - By https://github.com/thomassifferlen");

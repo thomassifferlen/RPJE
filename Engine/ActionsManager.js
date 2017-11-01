@@ -1,3 +1,20 @@
+var _JoystickEnabled = false;
+
+function EnableJoystick()
+{
+	_JoystickEnabled = true;
+}
+
+function DisableJoystick()
+{
+	_JoystickEnabled = false;
+}
+
+function is_JoystickEnabled()
+{
+	return _JoystickEnabled;
+}
+
 function MoveUp(doyoumove)
 {
 	if (doyoumove)
