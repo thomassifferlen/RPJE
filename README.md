@@ -23,6 +23,9 @@ Some of the game arts available with this project are not by me.
 Creative Commons https://creativecommons.org/licenses/by-sa/3.0/  
 Credits to : Buch (OpenGameArt.org) https://opengameart.org/users/buch - http://blog-buch.rhcloud.com  
 
+### Libs  
+Joystick : https://github.com/thomassifferlen/SimpleJoystick  
+
 ### [ Thomas SIFFERLEN ]
 http://www.thomassifferlen.fr/  
 https://github.com/thomassifferlen
