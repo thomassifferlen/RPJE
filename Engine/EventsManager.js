@@ -126,4 +126,10 @@ window.onkeyup = function(event)
 		break;
 	}
 }
-console.log("[INFO] ActionsManager Loaded");
+
+window.onresize = function(event)
+{
+    MainEngine.displayManager.screenFit(16, 9);
+};
+
+console.log("[INFO] EventsManager Loaded");

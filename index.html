@@ -1,7 +1,7 @@
 <head>
 	<script type='text/javascript' src='Libs/jquery-3.2.1.min.js'></script>
 	<script type="text/javascript" src='Libs/SimpleJoystick.js'></script>
-	<script type="text/javascript" src="Engine/ActionsManager.js"></script>
+	<script type="text/javascript" src="Engine/EventsManager.js"></script>
 
 	<script type="text/javascript" src="Tools/PairStruct.js"></script>
 	<script type="text/javascript" src="Engine/Player.js"></script>
@@ -22,6 +22,21 @@
 		body
 		{
 			margin : 0;
+
+			height: 100%;
+			width: 100%;
+
+			background-color: black;
+			display: flex;
+			flex-direction: row;
+		}
+
+		html
+		{
+			margin : 0;
+
+			height: 100%;
+			width: 100%;
 		}
 
 		.JoystickMain
@@ -31,6 +46,7 @@
 			background-color: black;
 			opacity : 0.6;
 			border-radius: 50%;
+			border: white 1px solid;
 		}
 
 		.Joystick
@@ -63,6 +79,25 @@
 		                                  supported by Chrome and Opera */
 		}
 
+		.child
+		{
+			background-color: black;
+			flex-grow: 1;
+		}
+
+		.heightFlex
+		{
+			background-color: black;
+			display: flex;
+			flex-direction: column;
+		}
+
+		#GameZone
+		{
+			width: 256;
+			height: 144;
+		}
+
 	</style>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -70,9 +105,21 @@
 </head>
 
 <body onload="main()">
-	<canvas id="Game">
-		
-	</canvas>
+
+	<div class="child"></div>
+
+	<div class="heightFlex">
+		<div class="child"></div>
+
+		<div id="GameZone">
+			<canvas id="Game">	</canvas>
+		</div>
+
+		<div class="child"></div>
+	</div>
+	
+
+	<div class="child"></div>
 
 	<div class="JoystickZone noselect">
 		<div class="JoystickMain" id="JoystickMain">

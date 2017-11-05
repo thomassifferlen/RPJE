@@ -23,6 +23,31 @@ class DisplayManager
     
   } //End constructor() function
 
+  screenFit(ratioW, ratioH)
+  {
+      var tmpH = (document.height !== undefined) ? document.height : document.body.offsetHeight;
+      var tmpW = (document.width !== undefined) ? document.width : document.body.offsetWidth;
+
+      if ( (tmpW)/(tmpH) < (ratioW / ratioH))
+      {
+          console.log("[INFO] Document height is too height for the specified ratio ... resizing game area !");
+          document.getElementById('GameZone').style.width = tmpW + "px";
+          document.getElementById('GameZone').style.height = Math.floor( tmpW / (ratioW / ratioH) ) + "px";
+
+      }
+      else if((tmpW)/(tmpH) > (ratioW / ratioH))
+      {
+          console.log("[INFO] Document width is too height for the specified ratio ... resizing game area !");
+          document.getElementById('GameZone').style.height = tmpH + "px";
+          document.getElementById('GameZone').style.width = Math.floor( tmpH * (ratioW / ratioH) ) + "px";
+      }
+      else if( (tmpW)/(tmpH) == (ratioW / ratioH))
+      {
+          document.getElementById('GameZone').style.width = tmpW + "px";
+          document.getElementById('GameZone').style.height = tmpH + "px";
+      }
+  }
+
   loadTiles(pathFolder)
   {
 

@@ -58,6 +58,8 @@ class RPJE_Engine
 
 	    this.is_Ready = true;
 
+	    this.displayManager.screenFit(16, 9);
+
 	    console.log("[INFO] Engine Ready");
 	}
 
