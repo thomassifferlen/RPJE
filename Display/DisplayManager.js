@@ -2,6 +2,17 @@ const TILE_HEIGHT_CLASSIC = 0;
 const TILE_HEIGHT_TWO = 16;
 const TILE_HEIGHT_THREE = 32;
 
+class SpriteTile
+{
+  constructor(path, TileValue)
+  {
+      this.path = path;
+      this.TileValue = TileValue;
+      this.img = new Image();
+      this.img.src = this.path;
+  }
+}
+
 class DisplayManager
 {
   constructor(Config)
@@ -9,95 +20,14 @@ class DisplayManager
     this.canvas = document.getElementById('Game');
     this.ctx = this.canvas.getContext('2d');
 
+    this.tilesGroundIMG_Array = [];
+    this.tilesObjIMG_Array = [];
+
     this.tilesIMG_Array = new Array();
 
-    this.tileSize = Config.tileSize;
+    var pathFolder = "Assets/";
 
-    this.loadTiles("Assets/");
-
-  	this.ctx.canvas.width = Config.nbr_Width * this.tileSize;
-  	this.ctx.canvas.height = Config.nbr_Height * this.tileSize;
-
-    console.log("[INFO] DisplayManager Ready");
-
-    
-  } //End constructor() function
-
-  screenFit(ratioW, ratioH)
-  {
-      var tmpH = (document.height !== undefined) ? document.height : document.body.offsetHeight;
-      var tmpW = (document.width !== undefined) ? document.width : document.body.offsetWidth;
-
-      if ( (tmpW)/(tmpH) < (ratioW / ratioH))
-      {
-          console.log("[INFO] Document height is too height for the specified ratio ... resizing game area !");
-          document.getElementById('GameZone').style.width = tmpW + "px";
-          document.getElementById('GameZone').style.height = Math.floor( tmpW / (ratioW / ratioH) ) + "px";
-
-      }
-      else if((tmpW)/(tmpH) > (ratioW / ratioH))
-      {
-          console.log("[INFO] Document width is too height for the specified ratio ... resizing game area !");
-          document.getElementById('GameZone').style.height = tmpH + "px";
-          document.getElementById('GameZone').style.width = Math.floor( tmpH * (ratioW / ratioH) ) + "px";
-      }
-      else if( (tmpW)/(tmpH) == (ratioW / ratioH))
-      {
-          document.getElementById('GameZone').style.width = tmpW + "px";
-          document.getElementById('GameZone').style.height = tmpH + "px";
-      }
-  }
-
-  loadTiles(pathFolder)
-  {
-
-	this.tilesIMG_Array["null"] = new Image();
-	this.tilesIMG_Array["null"].src = pathFolder + "null.png";
-
-	this.tilesIMG_Array["ground"] = new Image();
-	this.tilesIMG_Array["ground"].src = pathFolder + "ground.png";
-
-	this.tilesIMG_Array["grass"] = new Image();
-	this.tilesIMG_Array["grass"].src = pathFolder + "grass.png";
-
-	this.tilesIMG_Array["blue_flower_3"] = new Image();
-	this.tilesIMG_Array["blue_flower_3"].src = pathFolder + "Flowers/" + "blue_flower_3.png";
-
-	this.tilesIMG_Array["red_flower_3"] = new Image();
-	this.tilesIMG_Array["red_flower_3"].src = pathFolder + "Flowers/" + "red_flower_3.png";
-
-	this.tilesIMG_Array["white_flower_3"] = new Image();
-	this.tilesIMG_Array["white_flower_3"].src = pathFolder + "Flowers/" + "white_flower_3.png";
-
-	this.tilesIMG_Array["objects_fence_1"] = new Image();
-	this.tilesIMG_Array["objects_fence_1"].src = pathFolder + "Fences/" + "objects_fence_1.png";
-
-	this.tilesIMG_Array["objects_fence_2"] = new Image();
-	this.tilesIMG_Array["objects_fence_2"].src = pathFolder + "Fences/" + "objects_fence_2.png";
-
-	this.tilesIMG_Array["objects_fence_3"] = new Image();
-	this.tilesIMG_Array["objects_fence_3"].src = pathFolder + "Fences/" + "objects_fence_3.png";
-
-	this.tilesIMG_Array["objects_fence_4"] = new Image();
-	this.tilesIMG_Array["objects_fence_4"].src = pathFolder + "Fences/" + "objects_fence_4.png";
-
-	this.tilesIMG_Array["objects_fence_5"] = new Image();
-	this.tilesIMG_Array["objects_fence_5"].src = pathFolder + "Fences/" + "objects_fence_5.png";
-
-	this.tilesIMG_Array["objects_fence_angle_1"] = new Image();
-	this.tilesIMG_Array["objects_fence_angle_1"].src = pathFolder + "Fences/" + "objects_fence_angle_1.png";
-
-	this.tilesIMG_Array["objects_fence_angle_2"] = new Image();
-	this.tilesIMG_Array["objects_fence_angle_2"].src = pathFolder + "Fences/" + "objects_fence_angle_2.png";
-
-	this.tilesIMG_Array["objects_fence_angle_3"] = new Image();
-	this.tilesIMG_Array["objects_fence_angle_3"].src = pathFolder + "Fences/" + "objects_fence_angle_3.png";
-
-	this.tilesIMG_Array["objects_fence_angle_4"] = new Image();
-	this.tilesIMG_Array["objects_fence_angle_4"].src = pathFolder + "Fences/" + "objects_fence_angle_4.png";
-
-
-      //Player
+    //Player
 
       this.tilesIMG_Array["player_Down_1"] = new Image();
       this.tilesIMG_Array["player_Down_1"].src = pathFolder + "Player/" + "player_Down_1.png";
@@ -135,6 +65,51 @@ class DisplayManager
       this.tilesIMG_Array["player_Left_3"] = new Image();
       this.tilesIMG_Array["player_Left_3"].src = pathFolder + "Player/" + "player_Left_3.png";
 
+    this.tileSize = Config.tileSize;
+
+  	this.ctx.canvas.width = Config.nbr_Width * this.tileSize;
+  	this.ctx.canvas.height = Config.nbr_Height * this.tileSize;
+
+    console.log("[INFO] DisplayManager Ready");
+  } //End constructor() function
+
+  screenFit(ratioW, ratioH)
+  {
+      var tmpH = (document.height !== undefined) ? document.height : document.body.offsetHeight;
+      var tmpW = (document.width !== undefined) ? document.width : document.body.offsetWidth;
+
+      if ( (tmpW)/(tmpH) < (ratioW / ratioH))
+      {
+          console.log("[INFO] Document height is too height for the specified ratio ... resizing game area !");
+          document.getElementById('GameZone').style.width = tmpW + "px";
+          document.getElementById('GameZone').style.height = Math.floor( tmpW / (ratioW / ratioH) ) + "px";
+
+      }
+      else if((tmpW)/(tmpH) > (ratioW / ratioH))
+      {
+          console.log("[INFO] Document width is too height for the specified ratio ... resizing game area !");
+          document.getElementById('GameZone').style.height = tmpH + "px";
+          document.getElementById('GameZone').style.width = Math.floor( tmpH * (ratioW / ratioH) ) + "px";
+      }
+      else if( (tmpW)/(tmpH) == (ratioW / ratioH))
+      {
+          document.getElementById('GameZone').style.width = tmpW + "px";
+          document.getElementById('GameZone').style.height = tmpH + "px";
+      }
+  }
+
+  loadTile(path, TileValue, is_ground)
+  {
+      var tmpSprite = new SpriteTile(path, TileValue);
+      
+      if(is_ground)
+      {
+          this.tilesGroundIMG_Array.push(tmpSprite);
+      }
+      else
+      {
+          this.tilesObjIMG_Array.push(tmpSprite);
+      }
   }
 
   drawMap(mapToDraw, playerToDraw)
@@ -147,108 +122,27 @@ class DisplayManager
 	    {
 	      for(var y = 0 ; y < mapToDraw.nbr_Height ; y++)
 	      {
-            // ground
-
-	        	switch(mapToDraw.mapTiles[x][y])
-	        	{
-	        		case 0:
-	        			this.ctx.drawImage(this.tilesIMG_Array["ground"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-	        		break;
-
-	        		case 1:
-						    this.ctx.drawImage(this.tilesIMG_Array["grass"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-	        		break;
-
-	        		case 2:
-						    this.ctx.drawImage(this.tilesIMG_Array["blue_flower_3"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-	        		break;
-
-	        		case 3:
-						    this.ctx.drawImage(this.tilesIMG_Array["red_flower_3"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-	        		break;
-
-	        		case 4:
-						    this.ctx.drawImage(this.tilesIMG_Array["white_flower_3"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-	        		break;
-
-	        		default :
-	        			this.ctx.drawImage(this.tilesIMG_Array["null"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-                console.warn("[WARN] Unknown Tile");
-	        		break;
-	        	}
-	      }
-	    } //EndFor
-
-      for(var y = 0 ; y < mapToDraw.nbr_Height ; y++)
-      {
-        for(var x = 0 ; x < mapToDraw.nbr_Width ; x++)
-        {
-           
-            switch(mapToDraw.mapObjects[x][y])
+            for( var i = 0 ; i < this.tilesGroundIMG_Array.length ; i++ )
             {
-              case 0:
-                
-              break;
-
-              case 1:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_fence_1"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-              break;
-
-              case 2:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_fence_2"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-              break;
-
-              case 3:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_fence_3"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-              break;
-
-              case 4:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_fence_4"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-              break;
-
-              case 5:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_fence_5"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-              break;
-
-              case 6:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_fence_angle_1"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-              break;
-
-              case 7:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_fence_angle_2"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-              break;
-
-              case 8:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_fence_angle_3"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-              break;
-
-              case 9:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_fence_angle_4"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-              break;
-
-              /*case 5:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_fence_5"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-              break;
-
-              case 5:
-                  this.ctx.drawImage(this.tilesIMG_Array["objects_fence_5"], x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
-              break;*/
-
-              case -1:
-                  //invisible wall
-              break;
-
-              default :
-                  console.warn("[WARN] Unknown Map Object");
-              break;
+                if( this.tilesGroundIMG_Array[i].TileValue == mapToDraw.mapTiles[x][y])
+                {
+                        this.ctx.drawImage( this.tilesGroundIMG_Array[i].img , x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
+                } 
             }
 
-             //Objects 
-            
-        }
-      } //EndFor
+            for( var i = 0 ; i < this.tilesObjIMG_Array.length ; i++ )
+            {
+                if( this.tilesObjIMG_Array[i].TileValue == mapToDraw.mapObjects[x][y])
+                {
+                        this.ctx.drawImage( this.tilesObjIMG_Array[i].img , x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
+                }
+            }
+	      }
+	    } 
 
-        var tmpStrSprite =" player_";
+
+
+      var tmpStrSprite =" player_";
         var playerError = false;
 
         switch(playerToDraw.direction)

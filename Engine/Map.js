@@ -1,11 +1,3 @@
-/*class MapObject
-{
-	constructor(x, y)
-  	{
-    	this.position = new PairStruct(x,y);
-    }
-}*/
-
 class Map
 {
   constructor(nbr_Width, nbr_Height, worldPosition_X, worldPosition_Y)
@@ -31,8 +23,8 @@ class Map
       for(var y = 0 ; y < this.nbr_Height ; y++)
       {
         this.mapTiles[x][y] = 0;
-        this.mapEvent[x][y] = 0;
-        this.mapObjects[x][y] = 0;
+        this.mapEvent[x][y] = -1;
+        this.mapObjects[x][y] = -1;
       }
     }
 
@@ -75,7 +67,7 @@ class Map
     //console.log(y);
       if( x < this.nbr_Width && x >= 0 && y < this.nbr_Height && y >= 0)
       {
-          if(this.mapObjects[x][y] == 0)
+          if(this.mapObjects[x][y] == -1)
           {
               return true;
           }

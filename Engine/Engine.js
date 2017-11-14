@@ -40,7 +40,7 @@ class RPJE_Tick_Function
 		this.func = func;
 		this.enabled = true;
 	}
-
+	
 	run()
 	{
 		if(this.enabled)
@@ -109,7 +109,6 @@ class RPJE_Engine
         		this.TickFunc_Array[i].enabled = is_enabled;
         	}
         }
-
 	}
 
 	tick()
