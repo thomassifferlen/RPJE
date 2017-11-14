@@ -36,10 +36,12 @@ function main()
 	    }
 	};
 
-	var RPJE_Tick_Func_Joystick = new RPJE_Tick_Function(0, joystickTick_Func);
-	RPJE_GetEngine().Add_Tick_Function(RPJE_Tick_Func_Joystick);
+	RPJE_GetEngine().Add_Tick_Function(new RPJE_Tick_Function(0, joystickTick_Func));
 
-	//RPJE_GetEngine().SetEnabled_Tick_Function_By_ID(0, false); //this disable the created tick func
+
+	//Example of disabled tick function
+	RPJE_GetEngine().Add_Tick_Function(new RPJE_Tick_Function(1, function(){ console.log("tick"); }));
+	RPJE_GetEngine().SetEnabled_Tick_Function_By_ID(1, false); //this disable the created tick func at ID = 1
 
 	RPJE_StartEngine();
 }
