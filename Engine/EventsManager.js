@@ -129,7 +129,7 @@ window.onkeyup = function(event)
 
 window.onresize = function(event)
 {
-    MainEngine.displayManager.screenFit(16, 9);
+    RPJE_GetEngine().displayManager.screenFit(RPJE_GetEngine().config.nbr_Width, RPJE_GetEngine().config.nbr_Height);
 };
 
 console.log("[INFO] EventsManager Loaded");
