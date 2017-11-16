@@ -25,6 +25,8 @@ Credits to : Buch (OpenGameArt.org) https://opengameart.org/users/buch - http://
 
 ### Libs  
 Joystick : https://github.com/thomassifferlen/SimpleJoystick  
+Stats.js : https://github.com/mrdoob/stats.js/  
+jQuery : https://jquery.com/  
 
 ### [ Thomas SIFFERLEN ]
 http://www.thomassifferlen.fr/  
