@@ -1,14 +1,16 @@
 var loopInterval;
 var MainEngine = "NULL";
 
+var stats ;
+
 function RPJE_SetMainEngine(thisEngine)
 {
 	MainEngine = thisEngine;
 }
 
-function RPJE_StartEngine()
+function RPJE_StartEngine(speed)
 {
-	loopInterval = setInterval(function(){ MainEngine.tick(); }, 50);
+	loopInterval = setInterval(function(){ MainEngine.tick(); }, speed);
 }
 
 function RPJE_StopEngine()
@@ -81,6 +83,10 @@ class RPJE_Engine
 
 	    this.TickFunc_Array = [];
 
+	    stats = new Stats();
+		stats.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
+		document.body.appendChild( stats.dom );
+
 	    console.log("[INFO] Engine Ready");
 	}
 
@@ -113,6 +119,8 @@ class RPJE_Engine
 
 	tick()
 	{
+		stats.begin();
+
 		if(this.is_Ready)
 		{
 
@@ -132,6 +140,8 @@ class RPJE_Engine
 		{
 			console.warn("[INFO] tick() -> Engine is_Ready is set to False");
 		}
+
+		stats.end();
 	}
 
 }

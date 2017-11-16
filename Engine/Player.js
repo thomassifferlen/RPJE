@@ -92,7 +92,6 @@ class Player
             var JoyX = GetJoystick_X_Percent();
             var JoyY = GetJoystick_Y_Percent();
 
-
             tmpspeedX = Math.floor((4 * JoyX) / 100);
             tmpspeedY = Math.floor((4 * JoyY) / 100);
 
@@ -165,8 +164,6 @@ class Player
                     }
                 }
             }
-
-
         }
         else
         {
@@ -243,10 +240,8 @@ class Player
                     }
 
                 break;
-
             }
         }
-
     }    
   }
 }

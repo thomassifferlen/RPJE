@@ -63,5 +63,5 @@ function main()
 	RPJE_GetEngine().Add_Tick_Function(new RPJE_Tick_Function(1, function(){ console.log("tick"); }));
 	RPJE_GetEngine().SetEnabled_Tick_Function_By_ID(1, false); //this disable the created tick func at ID = 1
 
-	RPJE_StartEngine();
+	RPJE_StartEngine(40);
 }
