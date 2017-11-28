@@ -106,4 +106,12 @@ class Map
         }
   }
 
+  getMapObj(x, y)
+  { 
+      if( x < this.nbr_Width && x >= 0 && y < this.nbr_Height && y >= 0)
+      {
+          return this.mapObjects[x][y];
+      }
+  }
+
 }

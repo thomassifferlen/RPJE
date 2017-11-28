@@ -63,6 +63,8 @@ class RPJE_Engine
 		
 		this.displayManager = new DisplayManager(myRPJE_Config);
 
+		this.actionManager = new ActionManager();
+
 		this.world = new Array();
 
 		this.player = new Player("PlayerName");
@@ -115,6 +117,11 @@ class RPJE_Engine
         		this.TickFunc_Array[i].enabled = is_enabled;
         	}
         }
+	}
+
+	Action()
+	{
+		this.actionManager.Run_Action_By_ID(this.player.GetFacingMapObject(this.currentMap, this.config));
 	}
 
 	tick()

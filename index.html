@@ -2,7 +2,8 @@
 	<script type='text/javascript' src='Libs/stats.js'></script>
 	<script type='text/javascript' src='Libs/jquery-3.2.1.min.js'></script>
 	<script type="text/javascript" src='Libs/SimpleJoystick.js'></script>
-	<script type="text/javascript" src="Engine/EventsManager.js"></script>
+	<script type="text/javascript" src="Engine/HTMLEventsManager.js"></script>
+	<script type="text/javascript" src="Engine/ActionManager.js"></script>
 
 	<script type="text/javascript" src="Tools/PairStruct.js"></script>
 	<script type="text/javascript" src="Engine/Player.js"></script>
@@ -62,6 +63,20 @@
 			opacity : 0.6;
 			border-radius: 50%;
 			border: white 1px solid;
+		}
+
+		.ButtonAction
+		{
+			width: 150px;
+			height: 150px;
+			background-color: black;
+			opacity : 0.6;
+			border-radius: 50%;
+			border: white 1px solid;
+
+			position: absolute;
+			bottom: 5%;
+			right: 5%;
 		}
 
 		.Joystick
@@ -142,5 +157,7 @@
 			</div>
 		</div>
 	</div>
+
+	<button class="ButtonAction" onclick="RPJE_GetEngine().Action()"></button>
 </body>
 

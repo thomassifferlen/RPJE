@@ -63,5 +63,10 @@ function main()
 	RPJE_GetEngine().Add_Tick_Function(new RPJE_Tick_Function(1, function(){ console.log("tick"); }));
 	RPJE_GetEngine().SetEnabled_Tick_Function_By_ID(1, false); //this disable the created tick func at ID = 1
 
+
+	//ACTION MANAGER
+	RPJE_GetEngine().actionManager.Add_Action(new Action(0,  function(){ alert("ActionManager --> Hello this is a simple fence sprite"); }, "SIMPLE FENCE"));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(1,  function(){ alert("ActionManager --> Fence number 2"); }, "SIMPLE FENCE 2"));
+
 	RPJE_StartEngine(40);
 }

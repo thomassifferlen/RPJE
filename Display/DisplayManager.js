@@ -86,7 +86,7 @@ class DisplayManager
             {
                 if( this.tilesGroundIMG_Array[i].TileValue == mapToDraw.mapTiles[x][y])
                 {
-                        this.ctx.drawImage( this.tilesGroundIMG_Array[i].img , x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
+                        this.ctx.drawImage( this.tilesGroundIMG_Array[i].img , x * this.tileSize, y * this.tileSize - (this.tileSize - this.tilesGroundIMG_Array[i].img.naturalHeight));
                 } 
             }
 
@@ -94,7 +94,7 @@ class DisplayManager
             {
                 if( this.tilesObjIMG_Array[i].TileValue == mapToDraw.mapObjects[x][y])
                 {
-                        this.ctx.drawImage( this.tilesObjIMG_Array[i].img , x * this.tileSize, y * this.tileSize - TILE_HEIGHT_CLASSIC);
+                        this.ctx.drawImage( this.tilesObjIMG_Array[i].img , x * this.tileSize, y * this.tileSize - (this.tileSize - this.tilesGroundIMG_Array[i].img.naturalHeight));
                 }
             }
 	      }
@@ -105,28 +105,28 @@ class DisplayManager
             case PLAYER_DIRECTION_UP:
                 if (playerToDraw.PlayerSprites_Up.length > playerToDraw.spriteNumber)
                 {
-                   this.ctx.drawImage(playerToDraw.PlayerSprites_Up[playerToDraw.spriteNumber].img , playerToDraw.position.x - TILE_HEIGHT_CLASSIC,  playerToDraw.position.y - TILE_HEIGHT_CLASSIC - 5);
+                   this.ctx.drawImage(playerToDraw.PlayerSprites_Up[playerToDraw.spriteNumber].img , playerToDraw.position.x - TILE_HEIGHT_CLASSIC - (this.tileSize/2),  playerToDraw.position.y - TILE_HEIGHT_CLASSIC - 5);
                 }
             break;
 
             case PLAYER_DIRECTION_DOWN:
                 if (playerToDraw.PlayerSprites_Down.length > playerToDraw.spriteNumber)
                 {
-                       this.ctx.drawImage(playerToDraw.PlayerSprites_Down[playerToDraw.spriteNumber].img , playerToDraw.position.x - TILE_HEIGHT_CLASSIC,  playerToDraw.position.y - TILE_HEIGHT_CLASSIC - 5);
+                       this.ctx.drawImage(playerToDraw.PlayerSprites_Down[playerToDraw.spriteNumber].img , playerToDraw.position.x - TILE_HEIGHT_CLASSIC - (this.tileSize/2),  playerToDraw.position.y - TILE_HEIGHT_CLASSIC - 5);
                 }  
             break;
 
             case PLAYER_DIRECTION_RIGHT:  
                 if (playerToDraw.PlayerSprites_Right.length > playerToDraw.spriteNumber)
                 {
-                     this.ctx.drawImage(playerToDraw.PlayerSprites_Right[playerToDraw.spriteNumber].img , playerToDraw.position.x - TILE_HEIGHT_CLASSIC,  playerToDraw.position.y - TILE_HEIGHT_CLASSIC - 5);
+                     this.ctx.drawImage(playerToDraw.PlayerSprites_Right[playerToDraw.spriteNumber].img , playerToDraw.position.x - TILE_HEIGHT_CLASSIC - (this.tileSize/2),  playerToDraw.position.y - TILE_HEIGHT_CLASSIC - 5);
                 }
             break;
 
             case PLAYER_DIRECTION_LEFT:
                 if (playerToDraw.PlayerSprites_Left.length > playerToDraw.spriteNumber)
                 {
-                     this.ctx.drawImage(playerToDraw.PlayerSprites_Left[playerToDraw.spriteNumber].img , playerToDraw.position.x - TILE_HEIGHT_CLASSIC,  playerToDraw.position.y - TILE_HEIGHT_CLASSIC - 5);
+                     this.ctx.drawImage(playerToDraw.PlayerSprites_Left[playerToDraw.spriteNumber].img , playerToDraw.position.x - TILE_HEIGHT_CLASSIC - (this.tileSize/2),  playerToDraw.position.y - TILE_HEIGHT_CLASSIC - 5);
 
                 }   
             break;

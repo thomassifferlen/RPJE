@@ -15,7 +15,6 @@ class PlayerSprite
   }
 }
 
-
 class bagItem
 {
 	constructor(name, text)
@@ -51,6 +50,54 @@ class Player
     console.log("[INFO] Player Ready");
 
   } //End constructor() function
+
+  GetFacingMapObject(map, GameConfig)
+  {
+        var mapObject = -1;
+
+
+        switch(this.direction)
+        {
+            case PLAYER_DIRECTION_UP :
+
+                var posX = Math.floor((this.position.x )/GameConfig.tileSize);
+                var posY = Math.floor((this.position.y - this.speed *2)/GameConfig.tileSize);
+
+                mapObject = map.getMapObj(posX, posY);
+            break;
+
+            case PLAYER_DIRECTION_DOWN :
+
+                var posX = Math.floor((this.position.x )/GameConfig.tileSize);
+                var posY = Math.floor((this.position.y + this.speed *2)/GameConfig.tileSize);
+
+                mapObject = map.getMapObj(posX, posY );
+            break;
+
+            case PLAYER_DIRECTION_RIGHT :
+
+                var posX = Math.floor((this.position.x + this.speed * 2)/GameConfig.tileSize);
+                var posY = Math.floor((this.position.y + 5)/GameConfig.tileSize);
+
+                mapObject = map.getMapObj(posX , posY);
+
+            break;
+
+            case PLAYER_DIRECTION_LEFT :
+
+                var posX = Math.floor((this.position.x - this.speed *2)/GameConfig.tileSize);
+                var posY = Math.floor((this.position.y )/GameConfig.tileSize);
+
+                mapObject = map.getMapObj(posX, posY);
+            break;
+
+            default :
+                console.error("[ERROR] Player GetFacingMapObject() --> invalid direction");
+            break;  
+        }
+
+        return mapObject;
+  }
 
   AddSprite(direction, imgPath)
   {
@@ -92,15 +139,15 @@ class Player
             var JoyX = GetJoystick_X_Percent();
             var JoyY = GetJoystick_Y_Percent();
 
-            tmpspeedX = Math.floor((4 * JoyX) / 100);
-            tmpspeedY = Math.floor((4 * JoyY) / 100);
+            tmpspeedX = Math.floor((this.speed * JoyX) / 100);
+            tmpspeedY = Math.floor((this.speed * JoyY) / 100);
 
-            if(targetMap.isWalkableTile(Math.floor((this.position.x + (GameConfig.tileSize / 2))/GameConfig.tileSize),Math.floor(((this.position.y + (GameConfig.tileSize / 2))  + tmpspeedY)/GameConfig.tileSize)))
+            if(targetMap.isWalkableTile(Math.floor((this.position.x -8 + (GameConfig.tileSize / 2))/GameConfig.tileSize),Math.floor(((this.position.y + (GameConfig.tileSize / 2))  + tmpspeedY)/GameConfig.tileSize)))
             {
                 this.position.y += tmpspeedY;
             }
 
-            if(targetMap.isWalkableTile(Math.floor((this.position.x + (GameConfig.tileSize / 2) + tmpspeedX)/GameConfig.tileSize),Math.floor((this.position.y + (GameConfig.tileSize / 2)) /GameConfig.tileSize)))
+            if(targetMap.isWalkableTile(Math.floor((this.position.x - 8 + (GameConfig.tileSize / 2) + tmpspeedX)/GameConfig.tileSize),Math.floor((this.position.y + (GameConfig.tileSize / 2)) /GameConfig.tileSize)))
             {
                 this.position.x += tmpspeedX;
             }
