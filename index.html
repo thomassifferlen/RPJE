@@ -19,7 +19,21 @@
 			background-color: red;
 			height: 100%;
 			width: 100%;
+
+			
 		}
+
+		.NoCanvasAntialias
+		{
+			 image-rendering: optimizeSpeed;             /* Older versions of FF          */
+			  image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+			  image-rendering: -webkit-optimize-contrast; /* Safari                        */
+			  image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+			  image-rendering: pixelated;                 /* Awesome future-browsers       */
+			  -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
+		}
+
+		
 		body
 		{
 			margin : 0;
@@ -113,7 +127,7 @@
 		<div class="child"></div>
 
 		<div id="GameZone">
-			<canvas id="Game">	</canvas>
+			<canvas id="Game" class="NoCanvasAntialias">	</canvas>
 		</div>
 
 		<div class="child"></div>
