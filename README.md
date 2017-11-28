@@ -13,7 +13,7 @@ index.html is a working test project, you should refers to this file.
 /!\USE WITH KEYBOARD ONLY/!\  
 DisableJoystick();
 
-/!\USE WITH HTML JOYSTICK ONLY/!\  
+/!\USE WITH HTML TOUCH DEVICES JOYSTICK ONLY/!\  
 EnableJoystick();  
 
 ## Credits to :
