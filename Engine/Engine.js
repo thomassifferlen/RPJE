@@ -133,4 +133,4 @@ class RPJE_Engine
 
 }
 
-console.log("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V1");
+console.log("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V1.0");

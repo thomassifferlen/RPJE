@@ -29,9 +29,12 @@ var Writing_Interval;
 var currentLetterIndex = 0;
 var DialogEnd = false;
 
-function RPJE_Game_Dialog(str)
+var DialogEndFunction = null;
+
+function RPJE_Game_Dialog(str, endFunction)
 {
 	CurrentDialog = str;
+	DialogEndFunction = endFunction;
 	DialogEnd = false;
 	document.getElementById("Dialog").innerHTML = "";
 	RPJE_StopEngine();
@@ -64,6 +67,11 @@ function RPJE_Game_DialogEnd()
 	currentLetterIndex = 0;
 	CurrentDialog = "";
 	DialogEnd = false;
+
+	if(DialogEndFunction != null)
+	{
+		DialogEndFunction();
+	}
 }
 
 function RPJE_Game_HideDialog(is_Hide)
