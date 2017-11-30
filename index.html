@@ -11,13 +11,15 @@
 	<script type="text/javascript" src="Display/DisplayManager.js"></script>
 	<script type="text/javascript" src="Engine/Engine.js"></script>
 
+	<script type="text/javascript" src="Tools/RPJE_Tools.js"></script>
+
 	<script type="text/javascript" src="RPJE.js"></script>
 
 	<style type="text/css">
 	
 		canvas 
 		{
-			background-color: red;
+			background-color: black;
 			height: 100%;
 			width: 100%;
 
@@ -77,6 +79,27 @@
 			position: absolute;
 			bottom: 5%;
 			right: 5%;
+		}
+
+		.Dialog
+		{
+			width: 80%;
+			min-height: 50px;
+			background-color: black;
+			opacity : 0.6;
+			border-radius: 15px;
+			border: white 1px solid;
+			font-size: 2em;
+
+			padding : 0 10px;
+
+			color: white;
+
+			position: absolute;
+			top: 10%;
+			right: 10%;
+
+			display: none;
 		}
 
 		.Joystick
@@ -159,5 +182,6 @@
 	</div>
 
 	<button class="ButtonAction" onclick="RPJE_GetEngine().Action()"></button>
+	<div id="Dialog" class="Dialog"></div>
 </body>
 

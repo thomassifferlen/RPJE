@@ -69,4 +69,7 @@ function main()
 	RPJE_GetEngine().actionManager.Add_Action(new Action(1,  function(){ alert("ActionManager --> Fence number 2"); }, "SIMPLE FENCE 2"));
 
 	RPJE_StartEngine(40);
+
+	setTimeout(function(){ RPJE_Game_Dialog("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V1.0 - HTML controllers needs a touch device (Joystick is touchscreen only) - How to use doc is coming soon."); }, 100);
+	
 }

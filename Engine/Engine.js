@@ -1,27 +1,7 @@
-var loopInterval;
+
 var MainEngine = "NULL";
 
 var stats ;
-
-function RPJE_SetMainEngine(thisEngine)
-{
-	MainEngine = thisEngine;
-}
-
-function RPJE_StartEngine(speed)
-{
-	loopInterval = setInterval(function(){ MainEngine.tick(); }, speed);
-}
-
-function RPJE_StopEngine()
-{
-	clearInterval(loopInterval);
-}
-
-function RPJE_GetEngine()
-{
-	return MainEngine;
-}
 
 class RPJE_Config
 {
@@ -153,4 +133,4 @@ class RPJE_Engine
 
 }
 
-console.log("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V0.1");
+console.log("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V1");
