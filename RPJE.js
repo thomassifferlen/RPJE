@@ -26,9 +26,15 @@ function main()
 	RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_LEFT, "Assets/Player/player_Left_3.png");
 
 	//Grounds
-	RPJE_GetEngine().displayManager.loadTile("Assets/ground5.png", 0, true); // base ground
-	RPJE_GetEngine().displayManager.loadTile("Assets/grass.png", 1, true);
-	RPJE_GetEngine().displayManager.loadTile("Assets/Flowers/red_flower_3.png", 2, true);
+	RPJE_GetEngine().displayManager.loadTile("Assets/ground1.png", 0, true); // base ground
+	RPJE_GetEngine().displayManager.loadTile("Assets/ground2.png", 1, true); // base ground
+	RPJE_GetEngine().displayManager.loadTile("Assets/ground3.png", 2, true); // base ground
+	RPJE_GetEngine().displayManager.loadTile("Assets/ground4.png", 3, true); // base ground
+	RPJE_GetEngine().displayManager.loadTile("Assets/ground5.png", 4, true); // base ground
+	RPJE_GetEngine().displayManager.loadTile("Assets/grass.png", 5, true);
+
+	//Ground Tiles are going from 0 to 5, we want a random ground
+	RPJE_GetEngine().currentMap.randomizeMapGround(0,5);
 
 	//Map objects ( you can't walk on Map Objects)
 	RPJE_GetEngine().displayManager.loadTile("Assets/Fences/objects_fence_3.png", 0, false); //Fence
@@ -71,5 +77,4 @@ function main()
 	RPJE_StartEngine(40);
 
 	setTimeout(function(){ RPJE_Game_Dialog("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V1.0 - HTML controllers needs a touch device (Joystick is touchscreen only) - How to use doc is coming soon.", function(){console.log("Dialog callback func")}); }, 100);
-	
 }

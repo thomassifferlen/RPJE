@@ -32,6 +32,18 @@ class Map
 
   } //End constructor() function
 
+  randomizeMapGround(rangeMin, rangeMax)
+  {
+      for(var x = 0 ; x < this.nbr_Width ; x++)
+      {
+        
+        for(var y = 0 ; y < this.nbr_Height ; y++)
+        {
+          this.mapTiles[x][y] = Math.floor(Math.random() * (rangeMax - rangeMin +1)) + rangeMin ;
+        }
+      }
+  }
+
   loadMapJSON(str_JSON)
   {
     if(str_JSON != "NULL")
