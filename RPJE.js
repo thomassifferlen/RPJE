@@ -26,7 +26,7 @@ function main()
 	RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_LEFT, "Assets/Player/player_Left_3.png");
 
 	//Grounds
-	RPJE_GetEngine().displayManager.loadTile("Assets/ground.png", 0, true); // base ground
+	RPJE_GetEngine().displayManager.loadTile("Assets/ground5.png", 0, true); // base ground
 	RPJE_GetEngine().displayManager.loadTile("Assets/grass.png", 1, true);
 	RPJE_GetEngine().displayManager.loadTile("Assets/Flowers/red_flower_3.png", 2, true);
 
