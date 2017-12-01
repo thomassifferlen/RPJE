@@ -37,14 +37,14 @@ function main()
 	RPJE_GetEngine().currentMap.randomizeMapGround(0,5);
 
 	//Map objects ( you can't walk on Map Objects)
-	RPJE_GetEngine().displayManager.loadTile("Assets/Fences/objects_fence_3.png", 0, false); //Fence
-	RPJE_GetEngine().displayManager.loadTile("Assets/Fences/objects_fence_4.png", 1, false); //Fence 2
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/sign.png", 0, false); //Sign
+
 
 	//Enable Joystick and disable Keyboard - DisableJoystick() for Keyboard only
 	EnableJoystick();
 
 	//world and maps JSON format
-	RPJE_GetEngine().SetWorldMap(0, 0, '{"mapTiles":["0-0-1","1-0-2"],"mapObjects":["2-0-0","3-0-1"]}');
+	RPJE_GetEngine().SetWorldMap(0, 0, '{"mapTiles":["0-0-1","1-0-2"],"mapObjects":["8-3-0"]}');
 	RPJE_GetEngine().currentMap.loadMapJSON(RPJE_GetEngine().world[0][0]);
 
 	//This Will execute this function each engine tick
