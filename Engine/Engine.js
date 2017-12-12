@@ -45,6 +45,8 @@ class RPJE_Engine
 
 		this.actionManager = new ActionManager();
 
+		this.networkManager = new NetworkManager(Tools_randomSTR());
+
 		this.world = new Array();
 
 		this.player = new Player("PlayerName");
@@ -60,6 +62,7 @@ class RPJE_Engine
 	    }
 
 	    this.is_Ready = true;
+	    this.is_Multiplayer = false;
 
 	    this.displayManager.screenFit(this.config.nbr_Width, this.config.nbr_Height);
 
@@ -70,6 +73,13 @@ class RPJE_Engine
 		document.body.appendChild( stats.dom );
 
 	    console.log("[INFO] Engine Ready");
+	}
+
+	Multiplayer_Connect_To(str)
+	{
+		this.networkManager.connect(str);
+		this.is_Multiplayer = true;
+		console.log("[INFO] Multiplayer to : " + str);
 	}
 
 	SetWorldMap(x ,y, json)
@@ -119,7 +129,21 @@ class RPJE_Engine
 	        	}
 	        }
 
-			this.player.Move(this.currentMap,this.config);
+			var is_move = this.player.Move(this.currentMap,this.config);
+
+			if(is_move && this.is_Multiplayer) // si il a bougé et si on est en multijoueur
+			{
+				this.networkManager.send_Player_To_Server(this.player);
+
+				if(this.networkManager.getLastResponse() != "NULL")
+				{
+					var networkPlayers = JSON.parse( this.networkManager.getLastResponse() );
+
+					//console.log(this.networkManager.getLastResponse() );
+					console.log(networkPlayers);
+				
+				}
+			}
 
 			this.UpdateScreen();
 		}

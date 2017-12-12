@@ -76,5 +76,7 @@ function main()
 
 	RPJE_StartEngine(40);
 
-	setTimeout(function(){ RPJE_Game_Dialog("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V1.0 - HTML controllers needs a touch device (Joystick is touchscreen only) - How to use doc is coming soon.", function(){console.log("Dialog callback func")}); }, 100);
+	//setTimeout(function(){ RPJE_Game_Dialog("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V1.0 - HTML controllers needs a touch device (Joystick is touchscreen only) - How to use doc is coming soon.", function(){console.log("Dialog callback func")}); }, 100);
+
+	//RPJE_GetEngine().Multiplayer_Connect_To("ws://localhost:8080/RPJE");
 }
