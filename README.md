@@ -1,5 +1,5 @@
 # RPJE
-[ Work in Progress ] HTML/CSS/JS Canvas RPG engine - Role Playing Javascript Engine
+[ Work in Progress ] RPJE Project
 
 ## Preview
 Work in progess
