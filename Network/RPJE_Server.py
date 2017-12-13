@@ -5,6 +5,38 @@ import tornado.ioloop
 
 print "[INFO] Welcome to RPJE Server !"
 
+class Client:
+    def __init__(self, client):
+        self.playerID = "null"
+        self.client = client
+
+class ClientManager:
+    def __init__(self):
+        self.Clients = []
+
+    def getID_byClient(self, ARG_Client):
+
+        for client_it in self.Clients :
+            if ARG_Client == client_it.client:
+                return client_it.playerID
+        return "null"
+
+    def setID_for_Client(self, ARG_Client, ID):
+        for client_it in self.Clients :
+            if ARG_Client == client_it.client:
+                client_it.playerID = ID
+                return "ok"
+        return "null"
+
+    def deleteClient(self, ARG_Client):
+        for client_it in self.Clients :
+            if ARG_Client == client_it.client:
+                self.Clients.remove(client_it)
+                return "ok"
+        return "null"
+
+#---------------------
+
 class Player:
     def __init__(self, id, posx, posy):
         self.id = id
@@ -55,14 +87,11 @@ class PlayerManager:
         return True
 
     def DeletePlayerByID(self, idPlayer):
-        compteur = 0
         for player in self.Players:
             if player.id == idPlayer:
-                del self.Players[compteur]
+                self.Players.remove(player)
                 self.NeedToUpdate = True
                 return True
-            else :
-                compteur = compteur + 1 
         return False
 
     def AddPlayer(self,player):
@@ -72,6 +101,7 @@ class PlayerManager:
  
 
 ServerPlayerManager = PlayerManager()
+MyClientManager = ClientManager()
  
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
@@ -79,23 +109,25 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
     
     def open(self):
         print "New player, welcome !"
-        #self.clients.append(self)
-        #self.write_message("Hello World")
+        tmpClient = Client(self)
+        MyClientManager.Clients.append(tmpClient)
+        print str(len(MyClientManager.Clients)) + " Players are here !"
  
     def on_message(self, message):
         id, posx, posy = message.split("##-##")
 
+        MyClientManager.setID_for_Client(self, id)
+
         ServerPlayerManager.UpdatePlayerByID(id, posx, posy)
         self.write_message(ServerPlayerManager.GenerateJSON())
-
-        #print str(len(ServerPlayerManager.Players))
-
-        #print message
  
     def on_close(self):
-        print "Goodbye player, see you later !"
-        #self.clients.remove(self)
-        
+        print "This player is leaving : " + MyClientManager.getID_byClient(self)
+
+        ServerPlayerManager.DeletePlayerByID(MyClientManager.getID_byClient(self))
+
+        MyClientManager.deleteClient(self)
+        print str(len(MyClientManager.Clients)) + " Players are here !"  
 
     def check_origin(self, origin):
         return True
