@@ -72,35 +72,9 @@ class DisplayManager
       }
   }
 
-  drawMap(mapToDraw, playerToDraw)
+  drawPlayer(playerToDraw)
   {
-      var tilePositionPlayerX = Math.floor(playerToDraw.position.x / this.tileSize);
-      var tilePositionPlayerY = Math.floor(playerToDraw.position.y / this.tileSize);
-
-
-  		for(var x = 0 ; x < mapToDraw.nbr_Width ; x++)
-	    {
-	      for(var y = 0 ; y < mapToDraw.nbr_Height ; y++)
-	      {
-            for( var i = 0 ; i < this.tilesGroundIMG_Array.length ; i++ )
-            {
-                if( this.tilesGroundIMG_Array[i].TileValue == mapToDraw.mapTiles[x][y])
-                {
-                        this.ctx.drawImage( this.tilesGroundIMG_Array[i].img , x * this.tileSize, y * this.tileSize - (this.tileSize - this.tilesGroundIMG_Array[i].img.naturalHeight));
-                } 
-            }
-
-            for( var i = 0 ; i < this.tilesObjIMG_Array.length ; i++ )
-            {
-                if( this.tilesObjIMG_Array[i].TileValue == mapToDraw.mapObjects[x][y])
-                {
-                        this.ctx.drawImage( this.tilesObjIMG_Array[i].img , x * this.tileSize, y * this.tileSize - (this.tileSize - this.tilesGroundIMG_Array[i].img.naturalHeight));
-                }
-            }
-	      }
-	    } 
-
-        switch(playerToDraw.direction)
+       switch(playerToDraw.direction)
         {
             case PLAYER_DIRECTION_UP:
                 if (playerToDraw.PlayerSprites_Up.length > playerToDraw.spriteNumber)
@@ -130,10 +104,39 @@ class DisplayManager
 
                 }   
             break;
-
-
         }
+  }
 
+  drawMap(mapToDraw, playerToDraw)
+  {
+      var tilePositionPlayerX = Math.floor(playerToDraw.position.x / this.tileSize);
+      var tilePositionPlayerY = Math.floor(playerToDraw.position.y / this.tileSize);
+
+
+  		for(var x = 0 ; x < mapToDraw.nbr_Width ; x++)
+	    {
+	      for(var y = 0 ; y < mapToDraw.nbr_Height ; y++)
+	      {
+            for( var i = 0 ; i < this.tilesGroundIMG_Array.length ; i++ )
+            {
+                if( this.tilesGroundIMG_Array[i].TileValue == mapToDraw.mapTiles[x][y])
+                {
+                        this.ctx.drawImage( this.tilesGroundIMG_Array[i].img , x * this.tileSize, y * this.tileSize - (this.tileSize - this.tilesGroundIMG_Array[i].img.naturalHeight));
+                } 
+            }
+
+            for( var i = 0 ; i < this.tilesObjIMG_Array.length ; i++ )
+            {
+                if( this.tilesObjIMG_Array[i].TileValue == mapToDraw.mapObjects[x][y])
+                {
+                        this.ctx.drawImage( this.tilesObjIMG_Array[i].img , x * this.tileSize, y * this.tileSize - (this.tileSize - this.tilesGroundIMG_Array[i].img.naturalHeight));
+                }
+            }
+	      }
+	    } 
+
+       
+      this.drawPlayer(playerToDraw);
 
   }
 

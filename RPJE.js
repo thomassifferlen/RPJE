@@ -25,6 +25,10 @@ function main()
 	RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_LEFT, "Assets/Player/player_Left_1.png");
 	RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_LEFT, "Assets/Player/player_Left_3.png");
 
+
+	RPJE_GetEngine().player_Guest_Multiplayer.AddSprite( PLAYER_DIRECTION_DOWN, "Assets/Player/player_Down_1.png");
+	RPJE_GetEngine().player_Guest_Multiplayer.AddSprite( PLAYER_DIRECTION_DOWN, "Assets/Player/player_Down_2.png");
+
 	//Grounds
 	RPJE_GetEngine().displayManager.loadTile("Assets/ground1.png", 0, true); // base ground
 	RPJE_GetEngine().displayManager.loadTile("Assets/ground2.png", 1, true); // base ground

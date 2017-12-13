@@ -51,6 +51,8 @@ class RPJE_Engine
 
 		this.player = new Player("PlayerName");
 
+		this.player_Guest_Multiplayer = new Player("Guest");
+
 		for(var x = 0 ; x < this.config.worldSize ; x++)
 	    {
 	      this.world[x] = new Array();
@@ -92,6 +94,20 @@ class RPJE_Engine
 		this.displayManager.drawMap(this.currentMap, this.player);
 	}
 
+	UpdateMultiplayerScreenParts(net_Players_Array)
+	{
+		for( var i = 0 ; i < net_Players_Array.length ; i++)
+		{
+			if(net_Players_Array[i].id != this.networkManager.id_client) // si c'est pas le player local
+			{
+				this.player_Guest_Multiplayer.position.x = net_Players_Array[i].posx;
+				this.player_Guest_Multiplayer.position.y = net_Players_Array[i].posy;
+
+				this.displayManager.drawPlayer(this.player_Guest_Multiplayer);
+			}
+		}
+	}
+
 	Add_Tick_Function( newFunction )
 	{
 		this.TickFunc_Array.push(newFunction);
@@ -131,7 +147,9 @@ class RPJE_Engine
 
 			var is_move = this.player.Move(this.currentMap,this.config);
 
-			if(is_move && this.is_Multiplayer) // si il a bougé et si on est en multijoueur
+			this.UpdateScreen();
+
+			if(this.is_Multiplayer) // si on est en multijoueur
 			{
 				this.networkManager.send_Player_To_Server(this.player);
 
@@ -140,12 +158,12 @@ class RPJE_Engine
 					var networkPlayers = JSON.parse( this.networkManager.getLastResponse() );
 
 					//console.log(this.networkManager.getLastResponse() );
-					console.log(networkPlayers);
-				
+					//console.log(networkPlayers["Players"]);
+
+					this.UpdateMultiplayerScreenParts(networkPlayers["Players"])
 				}
 			}
-
-			this.UpdateScreen();
+			
 		}
 		else
 		{
