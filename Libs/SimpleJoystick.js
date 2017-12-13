@@ -13,6 +13,7 @@ var _PositionX = 0;
 var _PositionY = 0;
 
 var _JoystickMax = 0;
+var _Joystick_isMousedown = false;
 
 function LoadJoystick()
 {
@@ -23,6 +24,10 @@ function LoadJoystick()
 	Html_JoystickMain.addEventListener('touchmove', Joystick_OnTouchMove, false);
 	Html_JoystickMain.addEventListener('touchcancel', Joystick_OnTouchCancel, false);
 	Html_JoystickMain.addEventListener('touchend', Joystick_OnTouchEnd, false);
+
+	Html_JoystickMain.addEventListener('mousedown', Joystick_OnMouseDown, false);
+	Html_JoystickMain.addEventListener('mousemove', Joystick_OnMouseMove, false);
+	Html_JoystickMain.addEventListener('mouseup', Joystick_OnMouseUp, false);
 
 	console.log("[INFO] Joystick Ready");
 
@@ -43,6 +48,85 @@ function LoadJoystick()
 function Joystick_OnTouchStart(event)
 {
 
+}
+
+function Joystick_OnMouseDown(event)
+{
+	console.log("Down");
+	_Joystick_isMousedown = true;
+}
+
+function Joystick_OnMouseUp(event)
+{
+	console.log("Up");
+	$( "#Joystick" ).css( "left", (_JoystickMainWidth/2 - _JoystickWidth/2).toString() ) ;
+	$( "#Joystick" ).css( "top",  (_JoystickMainHeigth/2 - _JoystickHeigth/2).toString() ) ;
+
+	_PositionX = 0;
+	_PositionY = 0;
+
+	_Joystick_isMousedown = false;
+}
+
+function Joystick_OnMouseMove(event)
+{
+	if (_Joystick_isMousedown)
+	{
+		var tmpWidth = (event.clientX  - $('#JoystickMain').offset().left - _JoystickWidth /2);
+		var tmpHeigth =  (event.clientY  - $('#JoystickMain').offset().top - _JoystickHeigth /2);
+
+		if(tmpHeigth > _JoystickMainHeigth - _JoystickHeigth)
+		{
+			tmpHeigth =  _JoystickMainHeigth - _JoystickHeigth;
+		}
+
+		if(tmpWidth >  _JoystickMainWidth - _JoystickWidth)
+		{
+			tmpWidth = _JoystickMainWidth - _JoystickWidth;
+		}
+
+		if(tmpHeigth < 0)
+		{
+			tmpHeigth = 0;
+		}
+
+		if(tmpWidth < 0)
+		{
+			tmpWidth = 0;
+		}
+
+		$( "#Joystick" ).css( "left",  tmpWidth.toString() ) ;
+		$( "#Joystick" ).css( "top",  tmpHeigth.toString() ) ;
+
+		 _PositionX = event.clientX  - $('#JoystickMain').offset().left;
+		 _PositionY = event.clientY  - $('#JoystickMain').offset().top;
+
+
+		if( _PositionX > _JoystickMainHeigth)
+		{
+			_PositionX = _JoystickMainHeigth;
+		}
+
+		if( _PositionX <   0)
+		{
+			_PositionX = 0;
+		}
+
+		if( _PositionY > _JoystickMainHeigth)
+		{
+			_PositionY = _JoystickMainHeigth;
+		}
+
+		if( _PositionY <  0)
+		{
+			_PositionY = 0;
+		}
+
+
+		_PositionY -= _JoystickMax;
+		_PositionX -= _JoystickMax;
+	}
+	
 }
 
 function Joystick_OnTouchEnd()
@@ -120,8 +204,6 @@ function Joystick_OnTouchMove()
 
 	_PositionY -= _JoystickMax;
 	_PositionX -= _JoystickMax;
-
-
 }
 
 function GetJoystick_X()
