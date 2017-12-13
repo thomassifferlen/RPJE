@@ -289,6 +289,12 @@ class Player
                 break;
             }
         }
-    }    
+
+        return true; 
+    }  
+    else
+    {
+        return false; 
+    }
   }
 }
