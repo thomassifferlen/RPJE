@@ -44,7 +44,7 @@ function main()
 	EnableJoystick();
 
 	//world and maps JSON format
-	RPJE_GetEngine().SetWorldMap(0, 0, '{"mapTiles":["0-0-1","1-0-2"],"mapObjects":["8-3-0"]}');
+	RPJE_GetEngine().SetWorldMap(0, 0, '{"mapTiles":["0-0-1","1-0-2"],"mapObjects":["5-3-0"]}');
 	RPJE_GetEngine().currentMap.loadMapJSON(RPJE_GetEngine().world[0][0]);
 
 	//This Will execute this function each engine tick
@@ -71,10 +71,10 @@ function main()
 
 
 	//ACTION MANAGER
-	RPJE_GetEngine().actionManager.Add_Action(new Action(0,  function(){ alert("ActionManager --> Hello this is a simple fence sprite"); }, "SIMPLE FENCE"));
-	RPJE_GetEngine().actionManager.Add_Action(new Action(1,  function(){ alert("ActionManager --> Fence number 2"); }, "SIMPLE FENCE 2"));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(0,  function(){ RPJE_Game_Dialog("Hello", null)}, "SIMPLE FENCE"));
+
 
 	RPJE_StartEngine(40);
 
-	setTimeout(function(){ RPJE_Game_Dialog("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V1.0 - HTML controllers needs a touch device (Joystick is touchscreen only) - How to use doc is coming soon.", function(){console.log("Dialog callback func")}); }, 100);
+	setTimeout(function(){ RPJE_Game_Dialog("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V1.0", function(){console.log("Dialog callback func")}); }, 100);
 }
