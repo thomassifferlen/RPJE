@@ -85,6 +85,20 @@
 			right: 5%;
 		}
 
+		.ButtonNetwork
+		{
+			width: 150px;
+			height: 150px;
+			background-color: black;
+			opacity : 0.6;
+			border-radius: 50%;
+			border: white 1px solid;
+
+			position: absolute;
+			top: 5%;
+			right: 5%;
+		}
+
 		.Dialog
 		{
 			width: 80%;
@@ -185,7 +199,10 @@
 		</div>
 	</div>
 
-	<button class="ButtonAction" onclick="RPJE_GetEngine().Action()"></button>
+	<button class="ButtonAction" onclick="RPJE_GetEngine().Action()"><img src="UI/star.png" style="width: 100%;"></button>
+
+	<button class="ButtonNetwork" onclick="LinkStart()"><img src="UI/online.png" style="width: 100%;"></img></button>
+
 	<div id="Dialog" class="Dialog"></div>
 </body>
 
