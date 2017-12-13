@@ -102,6 +102,8 @@ class RPJE_Engine
 			{
 				this.player_Guest_Multiplayer.position.x = net_Players_Array[i].posx;
 				this.player_Guest_Multiplayer.position.y = net_Players_Array[i].posy;
+				this.player_Guest_Multiplayer.spriteNumber = parseInt(net_Players_Array[i].spriteNumber);
+				this.player_Guest_Multiplayer.direction = parseInt(net_Players_Array[i].direction);
 
 				this.displayManager.drawPlayer(this.player_Guest_Multiplayer);
 			}

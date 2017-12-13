@@ -104,6 +104,10 @@ class DisplayManager
 
                 }   
             break;
+
+            default:
+                   // console.log(playerToDraw.direction);
+            break;
         }
   }
 

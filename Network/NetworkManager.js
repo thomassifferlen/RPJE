@@ -30,8 +30,7 @@ class NetworkManager
 
     send_Player_To_Server(currentPlayer)
     {
-        //console.log("send");
-        this.sendCmd(currentPlayer.position.x.toString() + "##-##" + currentPlayer.position.y.toString());
+        this.sendCmd(currentPlayer.position.x.toString() + "##-##" + currentPlayer.position.y.toString() + "##-##" + currentPlayer.direction.toString() + "##-##" + currentPlayer.spriteNumber.toString());
     }
 
     connect(url_serv)
@@ -42,10 +41,10 @@ class NetworkManager
         this.Socket.onmessage = function(e)
         {
             RPJE_NETWORK_LAST_RESPONSE = e.data;
-            //console.log(this.lastResponse);
+            //console.log(RPJE_NETWORK_LAST_RESPONSE);
         };
 
-        console.log("[INFO] NetworkManager is connecting to : " + url_serv);
+        console.log("[INFO] Multiplayer enabled, NetworkManager is connecting to : " + url_serv);
     }
  
 }

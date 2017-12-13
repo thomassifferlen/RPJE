@@ -38,10 +38,12 @@ class ClientManager:
 #---------------------
 
 class Player:
-    def __init__(self, id, posx, posy):
+    def __init__(self, id, posx, posy, direction, spriteNumber):
         self.id = id
         self.posx = posx
         self.posy = posy 
+        self.direction = direction
+        self.spriteNumber = spriteNumber
 
 class PlayerManager:
 
@@ -62,7 +64,10 @@ class PlayerManager:
 
                 self.JSON = self.JSON + '"id": "' + player.id + '",'
                 self.JSON = self.JSON + '"posx": "' + player.posx + '",'
-                self.JSON = self.JSON + '"posy": "' + player.posy + '"'
+                self.JSON = self.JSON + '"posy": "' + player.posy + '",'
+                self.JSON = self.JSON + '"direction": "' + player.direction + '",'
+                self.JSON = self.JSON + '"spriteNumber": "' + player.spriteNumber + '"'
+
 
                 self.JSON = self.JSON + "},"
 
@@ -73,15 +78,17 @@ class PlayerManager:
             return self.JSON
 
 
-    def UpdatePlayerByID(self, idPlayer, posx, posy):
+    def UpdatePlayerByID(self, idPlayer, posx, posy, direction, spriteNumber):
         for player in self.Players:
             if player.id == idPlayer:
                 player.posx = posx
                 player.posy = posy
+                player.direction = direction
+                player.spriteNumber = spriteNumber
                 self.NeedToUpdate = True
                 return True
 
-        tmpPlayer = Player(idPlayer,posx, posy)
+        tmpPlayer = Player(idPlayer,posx, posy, direction, spriteNumber)
         self.AddPlayer(tmpPlayer)
         self.NeedToUpdate = True
         return True
@@ -104,8 +111,6 @@ ServerPlayerManager = PlayerManager()
 MyClientManager = ClientManager()
  
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
-
-    #clients = []
     
     def open(self):
         print "New player, welcome !"
@@ -114,11 +119,13 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         print str(len(MyClientManager.Clients)) + " Players are here !"
  
     def on_message(self, message):
-        id, posx, posy = message.split("##-##")
+        id, posx, posy, direction, spriteNumber = message.split("##-##")
 
         MyClientManager.setID_for_Client(self, id)
 
-        ServerPlayerManager.UpdatePlayerByID(id, posx, posy)
+        #print message
+
+        ServerPlayerManager.UpdatePlayerByID(id, posx, posy, direction, spriteNumber)
         self.write_message(ServerPlayerManager.GenerateJSON())
  
     def on_close(self):
