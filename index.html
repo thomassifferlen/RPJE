@@ -1,4 +1,7 @@
 <head>
+	<link rel="stylesheet" type="text/css" href="UI/UI.css">
+	<script type='text/javascript' src='UI/UI.js'></script>
+
 	<script type='text/javascript' src='Libs/stats.js'></script>
 	<script type='text/javascript' src='Libs/jquery-3.2.1.min.js'></script>
 	<script type="text/javascript" src="Tools/PairStruct.js"></script>
@@ -61,113 +64,7 @@
 			width: 100%;
 		}
 
-		.JoystickMain
-		{
-			width: 150px;
-			height: 150px;
-			background-color: black;
-			opacity : 0.6;
-			border-radius: 50%;
-			border: white 1px solid;
-		}
-
-		.ButtonAction
-		{
-			width: 150px;
-			height: 150px;
-			background-color: black;
-			opacity : 0.6;
-			border-radius: 50%;
-			border: white 1px solid;
-
-			position: absolute;
-			bottom: 5%;
-			right: 5%;
-		}
-
-		.ButtonNetwork
-		{
-			width: 150px;
-			height: 150px;
-			background-color: black;
-			opacity : 0.6;
-			border-radius: 50%;
-			border: white 1px solid;
-
-			position: absolute;
-			top: 5%;
-			right: 5%;
-		}
-
-		.Dialog
-		{
-			width: 80%;
-			min-height: 50px;
-			background-color: black;
-			opacity : 0.6;
-			border-radius: 15px;
-			border: white 1px solid;
-			font-size: 2em;
-
-			padding : 0 10px;
-
-			color: white;
-
-			position: absolute;
-			top: 10%;
-			right: 10%;
-
-			display: none;
-		}
-
-		.Joystick
-		{
-			width: 50px;
-			height: 50px;
-
-			position: relative;
-			background-color: white;
-			border: black 1px solid;
-			border-radius: 50%;
-			opacity : 0.5;
-		}
-
-		.JoystickZone
-		{
-			position: absolute;
-			bottom: 5%;
-			left: 5%;
-		}
-
-		.noselect
-		{
-		  -webkit-touch-callout: none; /* iOS Safari */
-		    -webkit-user-select: none; /* Safari */
-		     -khtml-user-select: none; /* Konqueror HTML */
-		       -moz-user-select: none; /* Firefox */
-		        -ms-user-select: none; /* Internet Explorer/Edge */
-		            user-select: none; /* Non-prefixed version, currently
-		                                  supported by Chrome and Opera */
-		}
-
-		.child
-		{
-			background-color: black;
-			flex-grow: 1;
-		}
-
-		.heightFlex
-		{
-			background-color: black;
-			display: flex;
-			flex-direction: column;
-		}
-
-		#GameZone
-		{
-			width: 256;
-			height: 144;
-		}
+		
 
 	</style>
 
@@ -201,8 +98,31 @@
 
 	<button class="ButtonAction" onclick="RPJE_GetEngine().Action()"><img src="UI/star.png" style="width: 100%;"></button>
 
-	<button class="ButtonNetwork" onclick="LinkStart()"><img src="UI/online.png" style="width: 100%;"></img></button>
+	<button class="ButtonNetwork" id="ButtonNetwork"><img src="UI/online.png" style="width: 100%;"></img></button>
 
 	<div id="Dialog" class="Dialog"></div>
+
+
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <span class="close">&times;</span>
+	      <h1 style="text-align: center;">Network</h1>
+	    </div>
+	    <div class="modal-body">
+	      <p style="width: 100%; height: 75px; font-size: 2em; " >Server IP : <input type="text" style="text-align: center; float: right; width: 60%; height: 75px; border-radius: 10px; font-size: 1em;" id="ip" value="localhost"></p>
+	      <p style="width: 100%;  height: 75px; font-size: 2em;" >Server Port : <input type="number" style="text-align: center; float: right; width: 60%; height: 75px; border-radius: 10px; font-size: 1em;" id="port" value="8888"></p>
+	    </div>
+	    <div class="modal-footer">
+	      <h3 style="text-align: center;" ><button style="width: 60%; height: 75px; border-radius: 10px; font-size: 1em;" onclick="LinkStart()">Connect</button></h3>
+	    </div>
+	  </div>
+
+	</div>
+
+
 </body>
 

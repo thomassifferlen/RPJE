@@ -4,7 +4,7 @@ function LinkStart()
 {
 	if(is_online == false)
 	{
-		RPJE_GetEngine().Multiplayer_Connect_To("ws://localhost:8080/RPJE");
+		RPJE_GetEngine().Multiplayer_Connect_To("ws://" + document.getElementById('ip').value +":"+ document.getElementById('port').value +"/RPJE");
 		is_online = true;
 	}
 }
@@ -12,6 +12,8 @@ function LinkStart()
 function main()
 {
 	LoadJoystick();
+
+	LoadUI_Events();
 
 	RPJE_SetMainEngine(new RPJE_Engine(new RPJE_Config(16,9,4)));
 
