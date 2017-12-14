@@ -1,0 +1,31 @@
+
+<script>
+    var ws;
+
+    function Connect()
+    {
+        ws = new WebSocket("ws://"+ document.getElementById('ip').value +"/RPJE_Admin");
+
+        ws.onmessage = function(e) {
+           alert(e.data);
+        };
+    }
+
+    function sendMsg() {
+        ws.send(document.getElementById('msg').value);
+    }
+</script>
+
+<body >
+    <strong>IP:PORT = </strong><input type="text" id="ip" maxlength="25" value="localhost:8888" />
+    <input type="button" onclick="Connect();" value="Connect to Server" />
+
+    <hr color=""></hr>
+    <strong>RPJE Server Admin : </strong><input type="text" id="msg" maxlength="25" />
+    <input type="button" onclick="sendMsg();" value="Send" />
+
+     <hr color=""></hr>
+     </br>
+     <h3>Commands :</h3>
+     <p><strong>Server Shutdown : </strong> server_stop</p>
+</body>
