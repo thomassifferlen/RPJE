@@ -138,11 +138,31 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
     def check_origin(self, origin):
         return True
+
+class Admin_WebSocketHandler(tornado.websocket.WebSocketHandler):
+    
+    def open(self):
+        print "[ADMIN] Hello Admin"
+       
+ 
+    def on_message(self, message):
+        print "[ADMIN] New command : " + message
+
+        if message == "server_stop" :
+            tornado.ioloop.IOLoop.instance().stop()
+
+ 
+    def on_close(self):
+        print "[ADMIN] Bye bye Admin"
+
+    def check_origin(self, origin):
+        return True
  
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
-            (r'/RPJE', WebSocketHandler)
+            (r'/RPJE', WebSocketHandler),
+            (r'/RPJE_Admin', Admin_WebSocketHandler)
         ]
  
         settings = {
@@ -154,5 +174,8 @@ class Application(tornado.web.Application):
 if __name__ == '__main__':
     ws_app = Application()
     server = tornado.httpserver.HTTPServer(ws_app)
-    server.listen(8080)
+    server.listen(8888)
     tornado.ioloop.IOLoop.instance().start()
+
+
+
