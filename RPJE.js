@@ -73,12 +73,22 @@ function main()
 	//Map objects ( you can't walk on Map Objects)
 	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/sign.png", 0, false); //Sign
 
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/Rock1.png", 1, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/Rock2.png", 2, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/Rock3.png", 3, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/Rock4.png", 4, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/Rock5.png", 5, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/Rock6.png", 6, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/Rock7.png", 7, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/Rock8.png", 8, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/Rock9.png", 9, false);
+
 
 	//Enable Joystick and disable Keyboard - DisableJoystick() for Keyboard only
 	EnableJoystick();
 
 	//world and maps JSON format
-	RPJE_GetEngine().SetWorldMap(0, 0, '{"mapTiles":["0-0-1","1-0-2"],"mapObjects":["5-3-0"]}');
+	RPJE_GetEngine().SetWorldMap(0, 0, '{"mapTiles":["0-0-1","1-0-2"],"mapObjects":["5-3-0", "0-0-5","1-0-5","2-0-6","0-1-8","1-1-8","2-1-9","0-8-5","1-8-5","2-8-6", "0-7-2", "1-7-2", "2-7-3" , "15-4-5", "15-3-5", "14-3-4", "14-4-4", "14-2-1", "15-2-2", "15-5-8", "14-5-7" ] }');
 	RPJE_GetEngine().currentMap.loadMapJSON(RPJE_GetEngine().world[0][0]);
 
 	//This Will execute this function each engine tick

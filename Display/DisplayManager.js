@@ -133,7 +133,7 @@ class DisplayManager
             {
                 if( this.tilesObjIMG_Array[i].TileValue == mapToDraw.mapObjects[x][y])
                 {
-                        this.ctx.drawImage( this.tilesObjIMG_Array[i].img , x * this.tileSize, y * this.tileSize - (this.tileSize - this.tilesGroundIMG_Array[i].img.naturalHeight));
+                        this.ctx.drawImage( this.tilesObjIMG_Array[i].img , x * this.tileSize, y * this.tileSize - (this.tileSize - this.tilesObjIMG_Array[i].img.naturalHeight));
                 }
             }
 	      }

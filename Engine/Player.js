@@ -35,7 +35,7 @@ class Player
     this.speed = 4;
     this.is_Moving = false;
 
-    this.position = new PairStruct(0,0);
+    this.position = new PairStruct(100,100);
     this.bag = new Array();
 
     this.spriteNumber = 1;
