@@ -123,8 +123,6 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
         MyClientManager.setID_for_Client(self, id)
 
-        #print message
-
         ServerPlayerManager.UpdatePlayerByID(id, posx, posy, direction, spriteNumber)
         self.write_message(ServerPlayerManager.GenerateJSON())
  
@@ -150,7 +148,6 @@ class Admin_WebSocketHandler(tornado.websocket.WebSocketHandler):
 
         if message == "server_stop" :
             tornado.ioloop.IOLoop.instance().stop()
-
  
     def on_close(self):
         print "[ADMIN] Bye bye Admin"

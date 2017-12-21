@@ -11,6 +11,7 @@ class RPJE_Config
 		this.nbr_Width = nbr_Width;
 		this.worldSize = worldSize;
 		this.tileSize = 16;
+		this.EngineSpeed = 40
 	}
 }
 
@@ -87,6 +88,16 @@ class RPJE_Engine
 	SetWorldMap(x ,y, json)
 	{
 		 this.world[x][y] = json;
+	}
+
+	SetEngineSpeed(speed_ms)
+	{
+		this.config.EngineSpeed = speed_ms;
+	}
+
+	GetEngineSpeed(speed_ms)
+	{
+		return this.config.EngineSpeed;
 	}
 
 	UpdateScreen()

@@ -1,5 +1,4 @@
 // ENGINE
-
 var loopInterval;
 
 function RPJE_SetMainEngine(thisEngine)
@@ -9,7 +8,8 @@ function RPJE_SetMainEngine(thisEngine)
 
 function RPJE_StartEngine(speed)
 {
-	loopInterval = setInterval(function(){ MainEngine.tick(); }, speed);
+	RPJE_GetEngine().SetEngineSpeed(speed);
+	loopInterval = setInterval(function(){  RPJE_GetEngine().tick(); }, RPJE_GetEngine().GetEngineSpeed());
 }
 
 function RPJE_StopEngine()
@@ -31,42 +31,58 @@ var DialogEnd = false;
 
 var DialogEndFunction = null;
 
+var DialogReady = true;
+
 function RPJE_Game_Dialog(str, endFunction)
 {
-	CurrentDialog = str;
-	DialogEndFunction = endFunction;
-	DialogEnd = false;
-	document.getElementById("Dialog").innerHTML = "";
-	RPJE_StopEngine();
-	RPJE_Game_HideDialog(false);
-	RPJE_StartWriting(20);
-
-	document.getElementById("Dialog").addEventListener("mousedown", function()
+	if (DialogReady)
 	{
-    	if(DialogEnd)
+		DialogReady = false;
+		CurrentDialog = str;
+		DialogEndFunction = endFunction;
+		DialogEnd = false;
+		document.getElementById("Dialog").innerHTML = "";
+		RPJE_StopEngine();
+		RPJE_Game_HideDialog(false);
+		RPJE_StartWriting(20);
+
+		document.getElementById("Dialog").addEventListener("mousedown", function()
+		{
+	    	if(DialogEnd)
+	    	{
+	    		RPJE_Game_DialogEnd();
+	    	}
+		});
+
+		document.getElementById("Dialog").addEventListener("touchstart", function()
+		{
+	    	if(DialogEnd)
+	    	{
+	    		RPJE_Game_DialogEnd();
+	    	}
+
+		});
+	}
+	else
+	{
+		if(DialogEnd)
     	{
     		RPJE_Game_DialogEnd();
     	}
-	});
-
-	document.getElementById("Dialog").addEventListener("touchstart", function()
-	{
-    	if(DialogEnd)
-    	{
-    		RPJE_Game_DialogEnd();
-    	}
-
-	});
+	}
+	
 }
 
 function RPJE_Game_DialogEnd()
 {
 	RPJE_Game_HideDialog(true);
-	RPJE_StartEngine(40);
+
+	RPJE_StartEngine( RPJE_GetEngine().GetEngineSpeed());
 
 	currentLetterIndex = 0;
 	CurrentDialog = "";
 	DialogEnd = false;
+	DialogReady = true;
 
 	if(DialogEndFunction != null)
 	{
