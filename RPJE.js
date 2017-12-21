@@ -60,12 +60,12 @@ function main()
 	RPJE_GetEngine().player_Guest_Multiplayer.AddSprite( PLAYER_DIRECTION_LEFT, "Assets/Player/player_Left_3.png");
 
 	//Grounds
-	RPJE_GetEngine().displayManager.loadTile("Assets/ground1.png", 0, true); // base ground
-	RPJE_GetEngine().displayManager.loadTile("Assets/ground2.png", 1, true); // base ground
-	RPJE_GetEngine().displayManager.loadTile("Assets/ground3.png", 2, true); // base ground
-	RPJE_GetEngine().displayManager.loadTile("Assets/ground4.png", 3, true); // base ground
-	RPJE_GetEngine().displayManager.loadTile("Assets/ground5.png", 4, true); // base ground
-	RPJE_GetEngine().displayManager.loadTile("Assets/grass.png", 5, true);
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/ground1.png", 0, true); // base ground
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/ground2.png", 1, true); // base ground
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/ground3.png", 2, true); // base ground
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/ground4.png", 3, true); // base ground
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/ground5.png", 4, true); // base ground
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/grass.png", 5, true);
 
 	//Ground Tiles are going from 0 to 5, we want a random ground
 	RPJE_GetEngine().currentMap.randomizeMapGround(0,5);
