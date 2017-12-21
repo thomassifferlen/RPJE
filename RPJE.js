@@ -9,6 +9,25 @@ function LinkStart()
 	}
 }
 
+function Popup_Test() //launched in action manager when action to a rock object
+{
+	RPJE_Game_DisplayPopup(true);
+
+	var canvas = document.getElementById('PopupCanvas');
+    var ctx = canvas.getContext('2d');
+
+  	ctx.canvas.width = 150;
+  	ctx.canvas.height = 150;
+
+  	ctx.clearRect(0, 0, ctx.canvas.width,ctx.canvas.height);
+
+  	ctx.fillStyle = 'blue';
+	ctx.fillRect(10, 10, 100, 50);
+	
+	ctx.strokeStyle = 'red';
+	ctx.strokeRect(75, 75, 50, 50);
+}
+
 function main()
 {
 	LoadJoystick();
@@ -116,6 +135,17 @@ function main()
 
 	//ACTION MANAGER
 	RPJE_GetEngine().actionManager.Add_Action(new Action(0,  function(){ RPJE_Game_Dialog("Hello", null)}, "SIMPLE FENCE"));
+
+
+	RPJE_GetEngine().actionManager.Add_Action(new Action(1,  function(){ Popup_Test(); }, "Popup open"));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(2,  function(){ Popup_Test(); }, "Popup open"));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(3,  function(){ Popup_Test(); }, "Popup open"));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(4,  function(){ Popup_Test(); }, "Popup open"));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(5,  function(){ Popup_Test(); }, "Popup open"));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(6,  function(){ Popup_Test(); }, "Popup open"));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(7,  function(){ Popup_Test(); }, "Popup open"));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(8,  function(){ Popup_Test(); }, "Popup open"));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(9,  function(){ Popup_Test(); }, "Popup open"));
 
 
 	RPJE_StartEngine(40);

@@ -1,6 +1,10 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="UI/UI.css">
+	<link rel="stylesheet" type="text/css" href="RPJE.css">
+
 	<script type='text/javascript' src='UI/UI.js'></script>
+	<script type='text/javascript' src='UI/Dialog/Dialog.js'></script>
+	<script type='text/javascript' src='UI/Popup/Popup.js'></script>
 
 	<script type='text/javascript' src='Libs/stats.js'></script>
 	<script type='text/javascript' src='Libs/jquery-3.2.1.min.js'></script>
@@ -12,7 +16,6 @@
 	<script type="text/javascript" src="Engine/ActionManager.js"></script>
 	<script type="text/javascript" src="Network/NetworkManager.js"></script>
 
-
 	<script type="text/javascript" src="Engine/Player.js"></script>
 	<script type="text/javascript" src="Engine/Map.js"></script>
 	<script type="text/javascript" src="Display/DisplayManager.js"></script>
@@ -21,52 +24,6 @@
 	<script type="text/javascript" src="Tools/RPJE_Tools.js"></script>
 
 	<script type="text/javascript" src="RPJE.js"></script>
-
-	<style type="text/css">
-	
-		canvas 
-		{
-			background-color: black;
-			height: 100%;
-			width: 100%;
-
-			
-		}
-
-		.NoCanvasAntialias
-		{
-			 image-rendering: optimizeSpeed;             /* Older versions of FF          */
-			  image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
-			  image-rendering: -webkit-optimize-contrast; /* Safari                        */
-			  image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
-			  image-rendering: pixelated;                 /* Awesome future-browsers       */
-			  -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
-		}
-
-		
-		body
-		{
-			margin : 0;
-
-			height: 100%;
-			width: 100%;
-
-			background-color: black;
-			display: flex;
-			flex-direction: row;
-		}
-
-		html
-		{
-			margin : 0;
-
-			height: 100%;
-			width: 100%;
-		}
-
-		
-
-	</style>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
@@ -96,28 +53,41 @@
 		</div>
 	</div>
 
-	<button class="ButtonAction" onclick="RPJE_GetEngine().Action()"><img src="UI/star.png" style="width: 100%;"></button>
+
 
 	<button class="ButtonNetwork" id="ButtonNetwork"><img src="UI/online.png" style="width: 100%;"></img></button>
+	<button class="ButtonAction" onclick="RPJE_GetEngine().Action()"><img src="UI/star.png" style="width: 100%;"></button>
 
 	<div id="Dialog" class="Dialog"></div>
+
+	<div id="Popup" class="Popup">
+		<div class="child"></div>
+
+		<div class="Popup_Canvas_Container">
+			<div class="child"></div>
+				<div style="position: relative; opacity: 0.9;"><button class="ClosePopupButton" onclick="RPJE_Game_DisplayPopup(false)"><img src="UI/close.png" style="width: 100%;"></button><canvas id="PopupCanvas"></canvas></div>
+			<div class="child"></div>
+		</div>
+		
+
+		<div class="child"></div>
+	</div>
 
 
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
-
 	  <!-- Modal content -->
 	  <div class="modal-content">
 	    <div class="modal-header">
 	      <span class="close">&times;</span>
-	      <h2 style="text-align: center;">Network</h2>
+	      <h2 style="text-align: center; margin :5px;">Network</h2>
 	    </div>
 	    <div class="modal-body">
 	      <p style="width: 100%; font-size: 1em; " >Server IP : <input type="text" style="text-align: center; float: right; width: 60%;  border-radius: 10px; font-size: 1em;" id="ip" value="localhost"></p>
 	      <p style="width: 100%; font-size: 1em;" >Server Port : <input type="number" style="text-align: center; float: right; width: 60%;  border-radius: 10px; font-size: 1em;" id="port" value="8888"></p>
 	    </div>
 	    <div class="modal-footer">
-	      <h3 style="text-align: center;" ><button style="width: 60%; height: 50px; border-radius: 10px; font-size: 1em;" onclick="LinkStart()">Connect</button></h3>
+	      <h3 style="text-align: center; margin :5px;" ><button style="width: 60%; height: 30px; border-radius: 10px; font-size: 0.8em;" onclick="LinkStart()">Connect</button></h3>
 	    </div>
 	  </div>
 
