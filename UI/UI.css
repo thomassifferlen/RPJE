@@ -12,13 +12,16 @@
 .ClosePopupButton
 {
     position: absolute;
-    top: 5px;
-    right: 10px;
+    top: -30px;
+    right: -30px;
 
 
     height: 30px;
     width: 30px;
     border-radius: 50%;
+
+    border : black 2px solid;
+
 
     background-color: Transparent;
     background-repeat:no-repeat;
@@ -80,6 +83,20 @@
     position: absolute;
     top: 5%;
     right: 5%;
+}
+
+.ButtonChat
+{
+    width: 75px;
+    height: 75px;
+    background-color: black;
+    opacity : 0.6;
+    border-radius: 50%;
+    border: white 1px solid;
+
+    position: absolute;
+    top: 5%;
+    left: 5%;
 }
 
 .Dialog

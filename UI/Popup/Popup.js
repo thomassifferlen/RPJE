@@ -21,13 +21,13 @@ function RPJE_Game_OpenPopup()
 
       	if(tmpH > tmpW)
       	{
-      		document.getElementById("PopupCanvas").style.width = tmpW/1.5 + "px" ;
-      		document.getElementById("PopupCanvas").style.height = tmpW/1.5 + "px";
+      		document.getElementById("PopupCanvas").style.width = tmpW/1.2 + "px" ;
+      		document.getElementById("PopupCanvas").style.height = tmpW/1.2 + "px";
       	}
       	else
       	{
-      		document.getElementById("PopupCanvas").style.width = tmpH/1.5 + "px" ;
-      		document.getElementById("PopupCanvas").style.height = tmpH/1.5 + "px";
+      		document.getElementById("PopupCanvas").style.width = tmpH/1.2 + "px" ;
+      		document.getElementById("PopupCanvas").style.height = tmpH/1.2 + "px";
       	}
 
       	var canvas = document.getElementById('PopupCanvas');

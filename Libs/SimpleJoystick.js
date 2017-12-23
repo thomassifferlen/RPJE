@@ -52,13 +52,11 @@ function Joystick_OnTouchStart(event)
 
 function Joystick_OnMouseDown(event)
 {
-	console.log("Down");
 	_Joystick_isMousedown = true;
 }
 
 function Joystick_OnMouseUp(event)
 {
-	console.log("Up");
 	$( "#Joystick" ).css( "left", (_JoystickMainWidth/2 - _JoystickWidth/2).toString() ) ;
 	$( "#Joystick" ).css( "top",  (_JoystickMainHeigth/2 - _JoystickHeigth/2).toString() ) ;
 

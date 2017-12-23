@@ -1,5 +1,71 @@
 var is_online = false;
 
+var Popup_canvas_array = new Array();
+
+CamvasTestImg1 = new Image();
+CamvasTestImg1.src = "Assets/Blocks/1.png";
+
+CamvasTestImg2 = new Image();
+CamvasTestImg2.src = "Assets/Blocks/2.png";
+
+CamvasTestImg3 = new Image();
+CamvasTestImg3.src = "Assets/Blocks/3.png";
+
+CamvasTestImg4 = new Image();
+CamvasTestImg4.src = "Assets/Blocks/4.png";
+
+for(var x = 0 ; x < 10 ; x++)
+{
+ 	Popup_canvas_array[x] = new Array();
+
+  for(var y = 0 ; y < 10 ; y++)
+  {
+    	Popup_canvas_array[x][y] = 0;
+  }
+}
+
+function Update_Popup()
+{
+	var canvas = document.getElementById('PopupCanvas');
+    var ctx = canvas.getContext('2d');
+
+  	ctx.canvas.width = 320;
+  	ctx.canvas.height = 320;
+
+	ctx.clearRect(0, 0, ctx.canvas.width,ctx.canvas.height);
+
+	for(var x = 0 ; x < 10 ; x++)
+	{
+	  for(var y = 0 ; y < 10 ; y++)
+	  {
+	  		switch(Popup_canvas_array[x][y])
+	  		{
+	  			case 1 :
+ 					ctx.drawImage(CamvasTestImg1 , x * 32, y * 32);
+	  			break;
+
+	  			case 2 :
+ 					ctx.drawImage(CamvasTestImg2 , x * 32, y * 32);
+	  			break;
+
+	  			case 3 :
+ 					ctx.drawImage(CamvasTestImg3 , x * 32, y * 32);
+	  			break;
+
+	  			case 4 :
+ 					ctx.drawImage(CamvasTestImg4 , x * 32, y * 32);
+	  			break;
+
+	  			default :
+
+	  			break;
+	  		}
+	  }
+	}
+
+	//console.log("Update_Popup");
+}
+
 function LinkStart()
 {
 	if(is_online == false)
@@ -13,19 +79,81 @@ function Popup_Test() //launched in action manager when action to a rock object
 {
 	RPJE_Game_DisplayPopup(true);
 
-	var canvas = document.getElementById('PopupCanvas');
-    var ctx = canvas.getContext('2d');
+	for(var x = 0 ; x < 10 ; x++)
+	{
+	  for(var y = 0 ; y < 10 ; y++)
+	  {
+	    	Popup_canvas_array[x][y] = Math.floor((Math.random() * 2) + 1);
+	  }
+	}
 
-  	ctx.canvas.width = 150;
-  	ctx.canvas.height = 150;
+  	Update_Popup();
 
-  	ctx.clearRect(0, 0, ctx.canvas.width,ctx.canvas.height);
 
-  	ctx.fillStyle = 'blue';
-	ctx.fillRect(10, 10, 100, 50);
-	
-	ctx.strokeStyle = 'red';
-	ctx.strokeRect(75, 75, 50, 50);
+	$("#PopupCanvas").on("touchstart", function(e)
+	{
+
+		var offset = $(this).offset();
+
+		var relativeX = (e.originalEvent.touches[0].pageX - offset.left);
+		var relativeY = (e.originalEvent.touches[0].pageY - offset.top);
+
+		//console.log("X: " + relativeX + "  Y: " + relativeY);
+
+	    var CanvasWidth = parseInt(document.getElementById("PopupCanvas").style.width.substring(0, document.getElementById("PopupCanvas").style.width.length - 1));
+
+	    //console.log(CanvasWidth);
+
+	    var CellSize = (32 * CanvasWidth) / 320;
+
+
+	    var ArrayPosX = Math.floor(relativeX / CellSize);
+		var ArrayPosY = Math.floor(relativeY / CellSize);
+
+		if(ArrayPosX < 10 &&  ArrayPosY < 10 && ArrayPosX >= 0 &&  ArrayPosY >= 0)
+		{
+			if (Popup_canvas_array[ArrayPosX][ArrayPosY] > 0 && Popup_canvas_array[ArrayPosX][ArrayPosY] < 5)
+			{
+				Popup_canvas_array[ArrayPosX][ArrayPosY] += 2 ;
+			}
+		}
+
+		if(ArrayPosX-1 < 10 &&  ArrayPosY < 10 && ArrayPosX-1 >= 0 &&  ArrayPosY >= 0)
+		{
+			if (Popup_canvas_array[ArrayPosX-1][ArrayPosY] > 0 && Popup_canvas_array[ArrayPosX-1][ArrayPosY] < 5)
+			{
+				Popup_canvas_array[ArrayPosX-1][ArrayPosY] ++ ;
+			}
+		}
+
+		if(ArrayPosX+1 < 10 &&  ArrayPosY < 10 && ArrayPosX+1 >= 0 &&  ArrayPosY >= 0)
+		{
+			if (Popup_canvas_array[ArrayPosX+1][ArrayPosY] > 0 && Popup_canvas_array[ArrayPosX+1][ArrayPosY] < 5)
+			{
+				Popup_canvas_array[ArrayPosX+1][ArrayPosY] ++ ;
+			}
+		}
+
+		if(ArrayPosX < 10 &&  ArrayPosY-1 < 10 && ArrayPosX >= 0 &&  ArrayPosY-1 >= 0)
+		{
+			if (Popup_canvas_array[ArrayPosX][ArrayPosY-1] > 0 && Popup_canvas_array[ArrayPosX][ArrayPosY-1] < 5)
+			{
+				Popup_canvas_array[ArrayPosX][ArrayPosY-1] ++ ;
+			}
+		}
+
+		if(ArrayPosX < 10 &&  ArrayPosY+1 < 10 && ArrayPosX >= 0 &&  ArrayPosY+1 >= 0)
+		{
+			if (Popup_canvas_array[ArrayPosX][ArrayPosY+1] > 0 && Popup_canvas_array[ArrayPosX][ArrayPosY+1] < 5)
+			{
+				Popup_canvas_array[ArrayPosX][ArrayPosY+1] ++ ;
+			}
+		}
+
+	  	Update_Popup();
+
+	});
+
 }
 
 function main()

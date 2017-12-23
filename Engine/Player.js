@@ -69,7 +69,7 @@ class Player
             case PLAYER_DIRECTION_DOWN :
 
                 var posX = Math.floor((this.position.x )/GameConfig.tileSize);
-                var posY = Math.floor((this.position.y + this.speed *2)/GameConfig.tileSize);
+                var posY = Math.floor((this.position.y + this.speed *3)/GameConfig.tileSize);
 
                 mapObject = map.getMapObj(posX, posY );
             break;
