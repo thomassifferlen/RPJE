@@ -214,6 +214,8 @@ function main()
 	RPJE_GetEngine().displayManager.loadTile("Assets/World/ground5.png", 4, true); // base ground
 	RPJE_GetEngine().displayManager.loadTile("Assets/World/grass.png", 5, true);
 
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/plant.png", 6, true);
+
 	//Ground Tiles are going from 0 to 5, we want a random ground
 	RPJE_GetEngine().currentMap.randomizeMapGround(0,5);
 
@@ -230,12 +232,14 @@ function main()
 	RPJE_GetEngine().displayManager.loadTile("Assets/World/Rock8.png", 8, false);
 	RPJE_GetEngine().displayManager.loadTile("Assets/World/Rock9.png", 9, false);
 
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/woodsticks.png", 10, false);
+
 
 	//Enable Joystick and disable Keyboard - DisableJoystick() for Keyboard only
 	EnableJoystick();
 
 	//world and maps JSON format
-	RPJE_GetEngine().SetWorldMap(0, 0, '{"mapTiles":["0-0-1","1-0-2"],"mapObjects":["5-3-0", "0-0-5","1-0-5","2-0-6","0-1-8","1-1-8","2-1-9","0-8-5","1-8-5","2-8-6", "0-7-2", "1-7-2", "2-7-3" , "15-4-5", "15-3-5", "14-3-4", "14-4-4", "14-2-1", "15-2-2", "15-5-8", "14-5-7" ] }');
+	RPJE_GetEngine().SetWorldMap(0, 0, '{"mapTiles":["7-0-6","8-1-6","9-1-6","10-1-6","9-2-6","12-0-6","15-0-6","14-0-6","15-1-6"],"mapObjects":["8-0-10","9-0-10","10-0-10","11-0-10","4-2-0", "0-0-5","1-0-5","2-0-6","0-1-8","1-1-8","2-1-9","0-8-5","1-8-5","2-8-6", "0-7-2", "1-7-2", "2-7-3" , "15-4-5", "15-3-5", "14-3-4", "14-4-4", "14-2-1", "15-2-2", "15-5-8", "14-5-7" ] }');
 	RPJE_GetEngine().currentMap.loadMapJSON(RPJE_GetEngine().world[0][0]);
 
 	//This Will execute this function each engine tick
