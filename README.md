@@ -2,7 +2,7 @@
 [ Work in Progress ] RPJE Project
 
 ## Preview
-Work in progess
+![img_preview](https://github.com/thomassifferlen/RPJE/blob/master/GitHub/Preview.PNG)  
 
 ## How to use ?
 [Comming Soon]  
