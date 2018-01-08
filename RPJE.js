@@ -280,7 +280,7 @@ function main()
 	RPJE_GetEngine().actionManager.Add_Action(new Action(9,  function(){ Popup_Test(); }, "Popup open"));
 
 
-	RPJE_StartEngine(40);
+	RPJE_StartEngine(50);
 
 
 	//setTimeout(function(){ RPJE_Game_Dialog("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V1.0", function(){console.log("Dialog callback func")}); }, 100);
