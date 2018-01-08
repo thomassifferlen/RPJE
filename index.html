@@ -53,11 +53,9 @@
 		</div>
 	</div>
 
-
-
 	<button class="ButtonNetwork" id="ButtonNetwork"><img src="UI/online.png" style="width: 100%;"></img></button>
 
-	<button class="ButtonChat" id="ButtonChat"><img src="UI/Chat.png" style="width: 100%;"></img></button>
+	<button class="ButtonChat" id="Button_TCHAT"><img src="UI/Chat.png" style="width: 100%;"></img></button>
 
 	<button class="ButtonAction" onclick="RPJE_GetEngine().Action()"><img src="UI/star.png" style="width: 100%;"></button>
 
@@ -76,7 +74,6 @@
 		<div class="child"></div>
 	</div>
 
-
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
 	  <!-- Modal content -->
@@ -93,6 +90,27 @@
 	      <h3 style="text-align: center; margin :5px;" ><button style="width: 60%; height: 30px; border-radius: 10px; font-size: 0.8em;" onclick="LinkStart()">Connect</button></h3>
 	    </div>
 	  </div>
-
 	</div>
+
+	<!-- The Modal TCHAT -->
+	<div id="myModal_TCHAT" class="modal">
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <span class="close_TCHAT">&times;</span>
+	      <h2 style="text-align: center; margin :5px;">Communication</h2>
+	    </div>
+	    <div class="modal-body">
+	      <div class="Emoji_parent">
+	      	<img src="UI/Emoji/Happy.png" class="Emoji_child"></img>
+	      	<img src="UI/Emoji/No.png" class="Emoji_child"></img>
+	      	<img src="UI/Emoji/Ok.png" class="Emoji_child"></img>
+	      	<img src="UI/Emoji/Smile.png" class="Emoji_child"></img>
+	      </div>
+	    </div>
+	    <div class="modal-footer">
+	    </div>
+	  </div>
+	</div>
+
 </body>

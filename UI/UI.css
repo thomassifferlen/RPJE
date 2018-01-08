@@ -1,3 +1,25 @@
+.Emoji_parent
+{
+    height : 80%;
+    width: 100%;
+    padding : 10px;
+    display: flex;
+    flex-direction: row;
+
+        align-items: center;
+    justify-content: center;
+}
+
+.Emoji_child
+{
+    padding : 5px;
+    
+    /*flex-grow: 1;*/
+
+    width: 150px;
+    height: 150px;
+}
+
 .Popup
 {
     position: absolute;
@@ -216,6 +238,20 @@
     cursor: pointer;
 }
 
+.close_TCHAT {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close_TCHAT:hover,
+.close_TCHAT:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .modal-header {
     padding: 2px 5px;
     background-color:  #686868;
@@ -228,6 +264,8 @@
     padding: 2px 16px;
     background-color:  #686868;
     color: white;
+
+    min-height: 25px;
 }
 
 /* Add Animation */
