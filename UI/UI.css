@@ -42,7 +42,7 @@
     width: 30px;
     border-radius: 50%;
 
-    border : black 2px solid;
+    border : #323232 2px solid;
 
 
     background-color: Transparent;
@@ -136,7 +136,7 @@
     color: white;
 
     position: absolute;
-    top: 10%;
+    top: 25%;
     right: 10%;
 
     display: none;

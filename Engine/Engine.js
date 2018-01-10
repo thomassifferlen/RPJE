@@ -149,7 +149,6 @@ class RPJE_Engine
 
 		if(this.is_Ready)
 		{
-
 	        for( var i = 0 ; i < this.TickFunc_Array.length ; i++ )
 	        {
 	        	if(this.TickFunc_Array[i] != null)
@@ -164,19 +163,26 @@ class RPJE_Engine
 
 			if(this.is_Multiplayer) // si on est en multijoueur
 			{
-				this.networkManager.send_Player_To_Server(this.player);
-
-				if(this.networkManager.getLastResponse() != "NULL")
+				if(this.networkManager.Socket.readyState === this.networkManager.Socket.OPEN)
 				{
-					var networkPlayers = JSON.parse( this.networkManager.getLastResponse() );
+	   				this.networkManager.send_Player_To_Server(this.player);
 
-					//console.log(this.networkManager.getLastResponse() );
-					//console.log(networkPlayers["Players"]);
+					if(this.networkManager.getLastResponse() != "NULL")
+					{
+						var networkPlayers = JSON.parse( this.networkManager.getLastResponse() );
 
-					this.UpdateMultiplayerScreenParts(networkPlayers["Players"])
+						//console.log(this.networkManager.getLastResponse() );
+						//console.log(networkPlayers["Players"]);
+
+						this.UpdateMultiplayerScreenParts(networkPlayers["Players"])
+					}
 				}
+				else if(this.networkManager.Socket.readyState === this.networkManager.Socket.CLOSED)
+				{
+	   				console.log("[INFO] Closing Multiplayer ....");
+	   				this.is_Multiplayer = false;
+				}	
 			}
-			
 		}
 		else
 		{
@@ -185,7 +191,6 @@ class RPJE_Engine
 
 		stats.end();
 	}
-
 }
 
 console.log("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V1.0");
