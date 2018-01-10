@@ -266,10 +266,10 @@ function main()
 
 
 	//ACTION MANAGER
-	RPJE_GetEngine().actionManager.Add_Action(new Action(0,  function(){ RPJE_Game_Dialog("Hello", null)}, "SIMPLE FENCE"));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(0,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(0); }, "SIMPLE FENCE"));
 
 
-	RPJE_GetEngine().actionManager.Add_Action(new Action(1,  function(){ Popup_Test(); }, "Popup open"));
+	/*RPJE_GetEngine().actionManager.Add_Action(new Action(1,  function(){ Popup_Test(); }, "Popup open"));
 	RPJE_GetEngine().actionManager.Add_Action(new Action(2,  function(){ Popup_Test(); }, "Popup open"));
 	RPJE_GetEngine().actionManager.Add_Action(new Action(3,  function(){ Popup_Test(); }, "Popup open"));
 	RPJE_GetEngine().actionManager.Add_Action(new Action(4,  function(){ Popup_Test(); }, "Popup open"));
@@ -278,7 +278,30 @@ function main()
 	RPJE_GetEngine().actionManager.Add_Action(new Action(7,  function(){ Popup_Test(); }, "Popup open"));
 	RPJE_GetEngine().actionManager.Add_Action(new Action(8,  function(){ Popup_Test(); }, "Popup open"));
 	RPJE_GetEngine().actionManager.Add_Action(new Action(9,  function(){ Popup_Test(); }, "Popup open"));
+*/
+	RPJE_GetEngine().actionManager.Add_Action(new Action(1,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(2,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(3,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(4,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(5,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(6,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(7,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(8,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
+	RPJE_GetEngine().actionManager.Add_Action(new Action(9,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
 
+	//STEPS SCENARIO TEST
+
+	RPJE_GetEngine().scenarioManager.Add_Scenario_Step(new ScenarioStep("Tutorial Step 0", function(){ RPJE_Game_Dialog("Hello welcome to RPJE scenario feature ! This is step 0, action on the mountain to unlock step 1 please !", null); }, 0));
+
+	var callback_tmp = function(){RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(2);};
+
+	var newStep = new ScenarioStep("Tutorial Step 1", function(){ RPJE_Game_Dialog("Great, this is step 1 ! This step can't be done without doing step 0", callback_tmp); }, 1)
+	newStep.requiredStepsID.push(0); // We NEED step 0 to be done already
+
+	RPJE_GetEngine().scenarioManager.Add_Scenario_Step(newStep);
+
+	var newStep2 = new ScenarioStep("Tutorial Step 2", function(){ RPJE_Game_Dialog("Oh and this is step 2 ! Auto-Launched when step 1 dialog end !", null); }, 2)
+	RPJE_GetEngine().scenarioManager.Add_Scenario_Step(newStep2);
 
 	RPJE_StartEngine(50);
 

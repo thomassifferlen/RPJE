@@ -46,6 +46,8 @@ class RPJE_Engine
 
 		this.actionManager = new ActionManager();
 
+		this.scenarioManager = new ScenarioManager();
+
 		this.networkManager = new NetworkManager(Tools_randomSTR());
 
 		this.world = new Array();
