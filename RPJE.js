@@ -216,6 +216,9 @@ function main()
 
 	RPJE_GetEngine().displayManager.loadTile("Assets/World/plant.png", 6, true);
 
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/ground_indoor.png", 7, true);
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/ground_indoor2.png", 8, true);
+
 	//Ground Tiles are going from 0 to 5, we want a random ground
 	RPJE_GetEngine().currentMap.randomizeMapGround(0,5);
 
@@ -234,12 +237,22 @@ function main()
 
 	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/woodsticks.png", 10, false);
 
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV1.png", 11, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV2.png", 12, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV3.png", 13, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV4.png", 14, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture1.png", 15, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture2.png", 16, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture3.png", 17, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture4.png", 18, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture5.png", 19, false);
+
 
 	//Enable Joystick and disable Keyboard - DisableJoystick() for Keyboard only
 	EnableJoystick();
 
 	//world and maps JSON format
-	RPJE_GetEngine().SetWorldMap(0, 0, '{"mapTiles":["7-0-6","8-1-6","9-1-6","10-1-6","9-2-6","12-0-6","15-0-6","14-0-6","15-1-6"],"mapObjects":["8-0-10","9-0-10","10-0-10","11-0-10","4-2-0", "0-0-5","1-0-5","2-0-6","0-1-8","1-1-8","2-1-9","0-8-5","1-8-5","2-8-6", "0-7-2", "1-7-2", "2-7-3" , "15-4-5", "15-3-5", "14-3-4", "14-4-4", "14-2-1", "15-2-2", "15-5-8", "14-5-7" ] }');
+	RPJE_GetEngine().SetWorldMap(0, 0, WORLD_MAPS_TEST1);
 	RPJE_GetEngine().currentMap.loadMapJSON(RPJE_GetEngine().world[0][0]);
 
 	//This Will execute this function each engine tick
