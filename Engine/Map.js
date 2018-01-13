@@ -126,4 +126,47 @@ class Map
       }
   }
 
+  exportJSON()
+  {
+
+    var JSONExport = '{"mapTiles":['
+
+    for(var x = 0 ; x < this.nbr_Width ; x++)
+    {
+      for(var y = 0 ; y < this.nbr_Height ; y++)
+      {
+         JSONExport = JSONExport + '"'+(x).toString()+'-'+(y).toString()+'-'+(this.mapTiles[x][y]).toString()+'"';
+
+          JSONExport = JSONExport + ',';
+      }
+    }
+
+    JSONExport = JSONExport.slice(0, -1);
+
+    JSONExport = JSONExport + '],"mapObjects":[';
+
+    for(var x = 0 ; x < this.nbr_Width ; x++)
+    {
+      for(var y = 0 ; y < this.nbr_Height ; y++)
+      {
+
+        if (this.mapObjects[x][y] != -1)
+        {
+            JSONExport = JSONExport + '"'+(x).toString()+'-'+(y).toString()+'-'+(this.mapObjects[x][y]).toString()+'"';
+
+            
+            JSONExport = JSONExport + ',';
+             
+        }
+        
+      }
+    }
+
+     JSONExport = JSONExport.slice(0, -1);
+
+    JSONExport = JSONExport + ']}'
+
+    return JSONExport;
+  }
+
 }
