@@ -114,7 +114,7 @@ function main()
 	RPJE_GetEngine().currentMap.loadMapJSON(RPJE_GetEngine().world[0][0]);
 
 	// ENABLE LIGHT IN AMBIANT SHADOW
-	RPJE_GetEngine().currentMap.setAmbiantLight(2);
+	RPJE_GetEngine().currentMap.setAmbiantLight(0);
 	RPJE_GetEngine().currentMap.setLightSource(7,5,0);
 	RPJE_GetEngine().currentMap.setLightSource(6,5,0);
 	RPJE_GetEngine().currentMap.setLightSource(6,4,0);
