@@ -22,6 +22,12 @@ class DisplayManager
 
     this.tilesGroundIMG_Array = [];
     this.tilesObjIMG_Array = [];
+    this.tilesLightMap = [];
+
+    this.tilesLightMap.push(new SpriteTile("Display/LightMap/shadow_low.png", 1))
+    this.tilesLightMap.push(new SpriteTile("Display/LightMap/shadow_medium.png", 2))
+    this.tilesLightMap.push(new SpriteTile("Display/LightMap/shadow_high.png", 3))
+    this.tilesLightMap.push(new SpriteTile("Display/LightMap/shadow_darkness.png", 4))
 
     this.tilesIMG_Array = new Array();
 
@@ -116,7 +122,6 @@ class DisplayManager
       var tilePositionPlayerX = Math.floor(playerToDraw.position.x / this.tileSize);
       var tilePositionPlayerY = Math.floor(playerToDraw.position.y / this.tileSize);
 
-
   		for(var x = 0 ; x < mapToDraw.nbr_Width ; x++)
 	    {
 	      for(var y = 0 ; y < mapToDraw.nbr_Height ; y++)
@@ -137,11 +142,32 @@ class DisplayManager
                 }
             }
 	      }
-	    } 
-
-       
+	    }  
       this.drawPlayer(playerToDraw);
+      this.drawLights_and_Shadows(mapToDraw);
+  }
 
+  drawLights_and_Shadows(mapToDraw)
+  {
+    if(!mapToDraw.EnableLights) //if light are set off (performance issues for example)
+    {
+        return;
+    }
+
+      for(var x = 0 ; x < mapToDraw.nbr_Width ; x++)
+        {
+            for(var y = 0 ; y < mapToDraw.nbr_Height ; y++)
+            {
+                for( var i = 0 ; i < this.tilesLightMap.length ; i++ )
+                {
+                    if( this.tilesLightMap[i].TileValue == mapToDraw.mapLights[x][y])
+                    {
+                        this.ctx.drawImage( this.tilesLightMap[i].img , x * this.tileSize, y * this.tileSize - (this.tileSize - this.tilesLightMap[i].img.naturalHeight));
+                    }
+                }
+            }
+        }
+    
   }
 
 }

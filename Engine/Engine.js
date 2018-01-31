@@ -5,12 +5,12 @@ var stats ;
 
 class RPJE_Config
 {
-	constructor(nbr_Width, nbr_Height, worldSize)
+	constructor(nbr_Width, nbr_Height, worldSize, tileSize)
 	{
 		this.nbr_Height = nbr_Height;
 		this.nbr_Width = nbr_Width;
 		this.worldSize = worldSize;
-		this.tileSize = 16;
+		this.tileSize = tileSize;
 		this.EngineSpeed = 40
 	}
 }

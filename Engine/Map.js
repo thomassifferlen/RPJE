@@ -14,23 +14,29 @@ class Map
     this.mapGoto = new Array();
     this.mapObjects = new Array();
 
+    //LightMap
+    this.mapLights = new Array();
+    this.EnableLights = false;
+    this.majorLightLevel = 0;
+
     for(var x = 0 ; x < this.nbr_Width ; x++)
     {
       this.mapTiles[x] = new Array();
       this.mapEvent[x] = new Array();
       this.mapObjects[x] = new Array();
+      this.mapLights[x] = new Array();
 
       for(var y = 0 ; y < this.nbr_Height ; y++)
       {
         this.mapTiles[x][y] = 0;
         this.mapEvent[x][y] = -1;
         this.mapObjects[x][y] = -1;
+        this.mapLights[x][y] = 0;
       }
     }
 
     console.log("[INFO] Map Ready");
-
-  } //End constructor() function
+  }
 
   randomizeMapGround(rangeMin, rangeMax)
   {
@@ -103,6 +109,106 @@ class Map
         else
         {
           console.error("[WARN] setTile() position is out of Map bounds - aborting function");
+        }
+  }
+
+  setAmbiantLight(value)
+  {
+    if(value > 4 || value < 0)
+    {
+        console.error("[WARN] setAmbiantLight() invalid LightValue - should be between 0 and 4");
+        return;
+    }
+
+      for(var x = 0 ; x < this.nbr_Width ; x++)
+      {
+        for(var y = 0 ; y < this.nbr_Height ; y++)
+        {
+
+           this.mapLights[x][y] = parseInt(value);
+        }
+      }
+
+       this.majorLightLevel = parseInt(value);
+  }
+
+  setLightTile(x, y, value, is_strict)
+  {
+        if( x < this.nbr_Width && x >= 0 && y < this.nbr_Height && y >= 0)
+        {
+            if(value > 4 || value < 0)
+            {
+                console.error("[WARN] setLightTile() invalid LightValue - should be between 0 and 4");
+            }
+            else
+            {
+                if (!is_strict)
+                {
+                  if(this.mapLights[x][y] > parseInt(value))
+                  {
+                    this.mapLights[x][y] = parseInt(value);
+                  }
+                }
+                else
+                {
+                  this.mapLights[x][y] = parseInt(value);
+                }
+            } 
+        }
+        else
+        {
+          console.warn("[WARN] setLightTile() position is out of Map bounds");
+        }
+  }
+
+  setLightSource(x, y)
+  {
+        if( x < this.nbr_Width && x >= 0 && y < this.nbr_Height && y >= 0)
+        {
+            this.setLightTile(x, y, 0, false);
+
+            if(this.majorLightLevel > 1)
+            {
+
+              this.setLightTile(x - 1, y, 1, false);
+              this.setLightTile(x + 1, y, 1, false);
+              this.setLightTile(x, y + 1, 1, false);
+              this.setLightTile(x, y - 1, 1, false);
+            }
+
+            if(this.majorLightLevel > 2)
+            {
+              this.setLightTile(x - 1, y - 1, 2, false);
+              this.setLightTile(x + 1, y - 1, 2, false);
+              this.setLightTile(x - 1, y + 1, 2, false);
+              this.setLightTile(x + 1, y + 1, 2, false);
+              this.setLightTile(x + 2, y, 2, false);
+              this.setLightTile(x - 2, y, 2, false);
+              this.setLightTile(x , y - 2, 2, false);
+              this.setLightTile(x , y + 2, 2, false);
+            }
+
+            if(this.majorLightLevel > 3)
+            {
+              this.setLightTile(x , y + 3, 3, false);
+              this.setLightTile(x , y - 3, 3, false);
+              this.setLightTile(x + 3, y , 3, false);
+              this.setLightTile(x - 3, y , 3, false);
+              this.setLightTile(x - 2, y -1, 3, false);
+              this.setLightTile(x - 1, y -2, 3, false);
+              this.setLightTile(x - 2, y + 1, 3, false);
+              this.setLightTile(x - 1, y + 2, 3, false);
+              this.setLightTile(x + 2, y +1, 3, false);
+              this.setLightTile(x + 1, y +2, 3, false);
+              this.setLightTile(x + 2, y - 1, 3, false);
+              this.setLightTile(x + 1, y - 2, 3, false);
+            }
+
+            
+        }
+        else
+        {
+          console.error("[WARN] setLightPoint() position is out of Map bounds - aborting function");
         }
   }
 

@@ -1,71 +1,5 @@
 var is_online = false;
 
-var Popup_canvas_array = new Array();
-
-CamvasTestImg1 = new Image();
-CamvasTestImg1.src = "Assets/Blocks/1.png";
-
-CamvasTestImg2 = new Image();
-CamvasTestImg2.src = "Assets/Blocks/2.png";
-
-CamvasTestImg3 = new Image();
-CamvasTestImg3.src = "Assets/Blocks/3.png";
-
-CamvasTestImg4 = new Image();
-CamvasTestImg4.src = "Assets/Blocks/4.png";
-
-for(var x = 0 ; x < 10 ; x++)
-{
- 	Popup_canvas_array[x] = new Array();
-
-  for(var y = 0 ; y < 10 ; y++)
-  {
-    	Popup_canvas_array[x][y] = 0;
-  }
-}
-
-function Update_Popup()
-{
-	var canvas = document.getElementById('PopupCanvas');
-    var ctx = canvas.getContext('2d');
-
-  	ctx.canvas.width = 320;
-  	ctx.canvas.height = 320;
-
-	ctx.clearRect(0, 0, ctx.canvas.width,ctx.canvas.height);
-
-	for(var x = 0 ; x < 10 ; x++)
-	{
-	  for(var y = 0 ; y < 10 ; y++)
-	  {
-	  		switch(Popup_canvas_array[x][y])
-	  		{
-	  			case 1 :
- 					ctx.drawImage(CamvasTestImg1 , x * 32, y * 32);
-	  			break;
-
-	  			case 2 :
- 					ctx.drawImage(CamvasTestImg2 , x * 32, y * 32);
-	  			break;
-
-	  			case 3 :
- 					ctx.drawImage(CamvasTestImg3 , x * 32, y * 32);
-	  			break;
-
-	  			case 4 :
- 					ctx.drawImage(CamvasTestImg4 , x * 32, y * 32);
-	  			break;
-
-	  			default :
-
-	  			break;
-	  		}
-	  }
-	}
-
-	//console.log("Update_Popup");
-}
-
 function LinkStart()
 {
 	if(is_online == false)
@@ -75,94 +9,13 @@ function LinkStart()
 	}
 }
 
-function Popup_Test() //launched in action manager when action to a rock object
-{
-	RPJE_Game_DisplayPopup(true);
-
-	for(var x = 0 ; x < 10 ; x++)
-	{
-	  for(var y = 0 ; y < 10 ; y++)
-	  {
-	    	Popup_canvas_array[x][y] = Math.floor((Math.random() * 2) + 1);
-	  }
-	}
-
-  	Update_Popup();
-
-
-	$("#PopupCanvas").on("touchstart", function(e)
-	{
-
-		var offset = $(this).offset();
-
-		var relativeX = (e.originalEvent.touches[0].pageX - offset.left);
-		var relativeY = (e.originalEvent.touches[0].pageY - offset.top);
-
-		//console.log("X: " + relativeX + "  Y: " + relativeY);
-
-	    var CanvasWidth = parseInt(document.getElementById("PopupCanvas").style.width.substring(0, document.getElementById("PopupCanvas").style.width.length - 1));
-
-	    //console.log(CanvasWidth);
-
-	    var CellSize = (32 * CanvasWidth) / 320;
-
-
-	    var ArrayPosX = Math.floor(relativeX / CellSize);
-		var ArrayPosY = Math.floor(relativeY / CellSize);
-
-		if(ArrayPosX < 10 &&  ArrayPosY < 10 && ArrayPosX >= 0 &&  ArrayPosY >= 0)
-		{
-			if (Popup_canvas_array[ArrayPosX][ArrayPosY] > 0 && Popup_canvas_array[ArrayPosX][ArrayPosY] < 5)
-			{
-				Popup_canvas_array[ArrayPosX][ArrayPosY] += 2 ;
-			}
-		}
-
-		if(ArrayPosX-1 < 10 &&  ArrayPosY < 10 && ArrayPosX-1 >= 0 &&  ArrayPosY >= 0)
-		{
-			if (Popup_canvas_array[ArrayPosX-1][ArrayPosY] > 0 && Popup_canvas_array[ArrayPosX-1][ArrayPosY] < 5)
-			{
-				Popup_canvas_array[ArrayPosX-1][ArrayPosY] ++ ;
-			}
-		}
-
-		if(ArrayPosX+1 < 10 &&  ArrayPosY < 10 && ArrayPosX+1 >= 0 &&  ArrayPosY >= 0)
-		{
-			if (Popup_canvas_array[ArrayPosX+1][ArrayPosY] > 0 && Popup_canvas_array[ArrayPosX+1][ArrayPosY] < 5)
-			{
-				Popup_canvas_array[ArrayPosX+1][ArrayPosY] ++ ;
-			}
-		}
-
-		if(ArrayPosX < 10 &&  ArrayPosY-1 < 10 && ArrayPosX >= 0 &&  ArrayPosY-1 >= 0)
-		{
-			if (Popup_canvas_array[ArrayPosX][ArrayPosY-1] > 0 && Popup_canvas_array[ArrayPosX][ArrayPosY-1] < 5)
-			{
-				Popup_canvas_array[ArrayPosX][ArrayPosY-1] ++ ;
-			}
-		}
-
-		if(ArrayPosX < 10 &&  ArrayPosY+1 < 10 && ArrayPosX >= 0 &&  ArrayPosY+1 >= 0)
-		{
-			if (Popup_canvas_array[ArrayPosX][ArrayPosY+1] > 0 && Popup_canvas_array[ArrayPosX][ArrayPosY+1] < 5)
-			{
-				Popup_canvas_array[ArrayPosX][ArrayPosY+1] ++ ;
-			}
-		}
-
-	  	Update_Popup();
-
-	});
-
-}
-
 function main()
 {
 	LoadJoystick();
 
 	LoadUI_Events();
 
-	RPJE_SetMainEngine(new RPJE_Engine(new RPJE_Config(16,9,4)));
+	RPJE_SetMainEngine(new RPJE_Engine(new RPJE_Config(16,9,4, 16)));
 
 	//Set Player_Purple img for all frames and all directions ( 4 frame loop sprites)
 	RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_UP, "Assets/Player_Purple/player_Up_1.png");
@@ -219,6 +72,8 @@ function main()
 	RPJE_GetEngine().displayManager.loadTile("Assets/World/ground_indoor.png", 7, true);
 	RPJE_GetEngine().displayManager.loadTile("Assets/World/ground_indoor2.png", 8, true);
 
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/black.png", 99, true);
+
 	//Ground Tiles are going from 0 to 5, we want a random ground
 	RPJE_GetEngine().currentMap.randomizeMapGround(0,5);
 
@@ -237,15 +92,18 @@ function main()
 
 	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/woodsticks.png", 10, false);
 
-	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV1.png", 11, false);
-	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV2.png", 12, false);
-	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV3.png", 13, false);
-	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV4.png", 14, false);
-	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture1.png", 15, false);
-	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture2.png", 16, false);
-	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture3.png", 17, false);
-	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture4.png", 18, false);
-	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture5.png", 19, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_small_1.png", 11, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_small_2.png", 12, false);
+
+
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV_1.png", 13, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV_2.png", 14, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV_3.png", 15, false);
+	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV_4.png", 16, false);
+
+	
+
+	RPJE_GetEngine().displayManager.loadTile("Assets/World/black.png", 99, false);
 
 
 	//Enable Joystick and disable Keyboard - DisableJoystick() for Keyboard only
@@ -254,6 +112,15 @@ function main()
 	//world and maps JSON format
 	RPJE_GetEngine().SetWorldMap(0, 0, WORLD_MAPS_TEST1);
 	RPJE_GetEngine().currentMap.loadMapJSON(RPJE_GetEngine().world[0][0]);
+
+	// ENABLE LIGHT IN AMBIANT SHADOW
+	RPJE_GetEngine().currentMap.setAmbiantLight(2);
+	RPJE_GetEngine().currentMap.setLightSource(7,5,0);
+	RPJE_GetEngine().currentMap.setLightSource(6,5,0);
+	RPJE_GetEngine().currentMap.setLightSource(6,4,0);
+	RPJE_GetEngine().currentMap.setLightSource(7,4,0);
+	RPJE_GetEngine().currentMap.EnableLights = true;
+
 
 	//This Will execute this function each engine tick
 	var joystickTick_Func = function()
@@ -282,16 +149,6 @@ function main()
 	RPJE_GetEngine().actionManager.Add_Action(new Action(0,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(0); }, "SIMPLE FENCE"));
 
 
-	/*RPJE_GetEngine().actionManager.Add_Action(new Action(1,  function(){ Popup_Test(); }, "Popup open"));
-	RPJE_GetEngine().actionManager.Add_Action(new Action(2,  function(){ Popup_Test(); }, "Popup open"));
-	RPJE_GetEngine().actionManager.Add_Action(new Action(3,  function(){ Popup_Test(); }, "Popup open"));
-	RPJE_GetEngine().actionManager.Add_Action(new Action(4,  function(){ Popup_Test(); }, "Popup open"));
-	RPJE_GetEngine().actionManager.Add_Action(new Action(5,  function(){ Popup_Test(); }, "Popup open"));
-	RPJE_GetEngine().actionManager.Add_Action(new Action(6,  function(){ Popup_Test(); }, "Popup open"));
-	RPJE_GetEngine().actionManager.Add_Action(new Action(7,  function(){ Popup_Test(); }, "Popup open"));
-	RPJE_GetEngine().actionManager.Add_Action(new Action(8,  function(){ Popup_Test(); }, "Popup open"));
-	RPJE_GetEngine().actionManager.Add_Action(new Action(9,  function(){ Popup_Test(); }, "Popup open"));
-*/
 	RPJE_GetEngine().actionManager.Add_Action(new Action(1,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
 	RPJE_GetEngine().actionManager.Add_Action(new Action(2,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
 	RPJE_GetEngine().actionManager.Add_Action(new Action(3,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
@@ -317,10 +174,5 @@ function main()
 	RPJE_GetEngine().scenarioManager.Add_Scenario_Step(newStep2);
 
 	RPJE_StartEngine(50);
-
-
-	//setTimeout(function(){ RPJE_Game_Dialog("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V1.0", function(){console.log("Dialog callback func")}); }, 100);
-
-	//setTimeout(function(){ RPJE_Game_Dialog("RPJE by https://github.com/thomassifferlen - Role Playing Javascript Engine V1.0 - HTML controllers needs a touch device (Joystick is touchscreen only) - How to use doc is coming soon.", function(){console.log("Dialog callback func")}); }, 100);
 
 }
