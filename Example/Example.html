@@ -1,32 +1,15 @@
 <head>
-	<link rel="stylesheet" type="text/css" href="UI/UI.css">
-	<link rel="stylesheet" type="text/css" href="RPJE.css">
+	<link rel="stylesheet" type="text/css" href="../Build/RPJE_Release.css">
 
 	<script type='text/javascript' src='World_Maps.js'></script>
 
-	<script type='text/javascript' src='UI/UI.js'></script>
-	<script type='text/javascript' src='UI/Dialog/Dialog.js'></script>
-	<script type='text/javascript' src='UI/Popup/Popup.js'></script>
-
 	<script type='text/javascript' src='Libs/stats.js'></script>
 	<script type='text/javascript' src='Libs/jquery-3.2.1.min.js'></script>
-	<script type="text/javascript" src="Other/PairStruct.js"></script>
-	<script type="text/javascript" src="Other/RandomSTR.js"></script>
-	<script type="text/javascript" src='Libs/SimpleJoystick.js'></script>
 
-	<script type="text/javascript" src="Engine/HTMLEventsManager.js"></script>
-	<script type="text/javascript" src="Engine/ActionManager.js"></script>
-	<script type="text/javascript" src="Scenario/ScenarioManager.js"></script>
-	<script type="text/javascript" src="Network/NetworkManager.js"></script>
+	<script type="text/javascript" src="../Build/RPJE_Release.js"></script>
 
-	<script type="text/javascript" src="Engine/Player.js"></script>
-	<script type="text/javascript" src="Engine/Map.js"></script>
-	<script type="text/javascript" src="Display/DisplayManager.js"></script>
-	<script type="text/javascript" src="Engine/Engine.js"></script>
-
-	<script type="text/javascript" src="Other/RPJE_Tools.js"></script>
-
-	<script type="text/javascript" src="RPJE.js"></script>
+	<script type="text/javascript" src="UI/UI.js"></script>
+	<script type="text/javascript" src="Example.js"></script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
@@ -63,19 +46,6 @@
 	<button class="ButtonAction" onclick="RPJE_GetEngine().Action()"><img src="UI/star.png" style="width: 100%;"></button>
 
 	<div id="Dialog" class="Dialog"></div>
-
-	<div id="Popup" class="Popup">
-		<div class="child"></div>
-
-		<div class="Popup_Canvas_Container">
-			<div class="child"></div>
-				<div style="position: relative; opacity: 1; box-shadow: 10px 12px 2px 1px rgba(0, 0, 0, .4);"><button class="ClosePopupButton" onclick="RPJE_Game_DisplayPopup(false)"><img src="UI/close.png" style="width: 100%;"></button><canvas id="PopupCanvas"></canvas></div>
-			<div class="child"></div>
-		</div>
-		
-
-		<div class="child"></div>
-	</div>
 
 	<!-- The Modal -->
 	<div id="myModal" class="modal">

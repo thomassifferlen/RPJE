@@ -42,7 +42,6 @@ class Map
   {
       for(var x = 0 ; x < this.nbr_Width ; x++)
       {
-        
         for(var y = 0 ; y < this.nbr_Height ; y++)
         {
           this.mapTiles[x][y] = Math.floor(Math.random() * (rangeMax - rangeMin +1)) + rangeMin ;
@@ -69,7 +68,6 @@ class Map
 
             this.seMapObj(splitStr[0], splitStr[1], splitStr[2])
         }
-
 
         console.log("[INFO] Map JSON Loaded");
     }
@@ -124,7 +122,6 @@ class Map
       {
         for(var y = 0 ; y < this.nbr_Height ; y++)
         {
-
            this.mapLights[x][y] = parseInt(value);
         }
       }
@@ -169,7 +166,6 @@ class Map
 
             if(this.majorLightLevel > 1)
             {
-
               this.setLightTile(x - 1, y, 1, false);
               this.setLightTile(x + 1, y, 1, false);
               this.setLightTile(x, y + 1, 1, false);
@@ -203,8 +199,6 @@ class Map
               this.setLightTile(x + 2, y - 1, 3, false);
               this.setLightTile(x + 1, y - 2, 3, false);
             }
-
-            
         }
         else
         {

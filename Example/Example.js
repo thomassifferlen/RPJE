@@ -12,7 +12,6 @@ function LinkStart()
 function main()
 {
 	LoadJoystick();
-
 	LoadUI_Events();
 
 	RPJE_SetMainEngine(new RPJE_Engine(new RPJE_Config(16,9,4, 16)));
@@ -95,13 +94,10 @@ function main()
 	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_small_1.png", 11, false);
 	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_small_2.png", 12, false);
 
-
 	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV_1.png", 13, false);
 	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV_2.png", 14, false);
 	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV_3.png", 15, false);
 	RPJE_GetEngine().displayManager.loadTile("Assets/Objects/indoor_furniture_TV_4.png", 16, false);
-
-	
 
 	RPJE_GetEngine().displayManager.loadTile("Assets/World/black.png", 99, false);
 
@@ -114,7 +110,7 @@ function main()
 	RPJE_GetEngine().currentMap.loadMapJSON(RPJE_GetEngine().world[0][0]);
 
 	// ENABLE LIGHT IN AMBIANT SHADOW
-	RPJE_GetEngine().currentMap.setAmbiantLight(0);
+	RPJE_GetEngine().currentMap.setAmbiantLight(3);
 	RPJE_GetEngine().currentMap.setLightSource(7,5,0);
 	RPJE_GetEngine().currentMap.setLightSource(6,5,0);
 	RPJE_GetEngine().currentMap.setLightSource(6,4,0);
@@ -144,10 +140,8 @@ function main()
 	RPJE_GetEngine().Add_Tick_Function(new RPJE_Tick_Function(1, function(){ console.log("tick"); }));
 	RPJE_GetEngine().SetEnabled_Tick_Function_By_ID(1, false); //this disable the created tick func at ID = 1
 
-
 	//ACTION MANAGER
 	RPJE_GetEngine().actionManager.Add_Action(new Action(0,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(0); }, "SIMPLE FENCE"));
-
 
 	RPJE_GetEngine().actionManager.Add_Action(new Action(1,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
 	RPJE_GetEngine().actionManager.Add_Action(new Action(2,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
@@ -160,7 +154,6 @@ function main()
 	RPJE_GetEngine().actionManager.Add_Action(new Action(9,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(1); }, ""));
 
 	//STEPS SCENARIO TEST
-
 	RPJE_GetEngine().scenarioManager.Add_Scenario_Step(new ScenarioStep("Tutorial Step 0", function(){ RPJE_Game_Dialog("Hello welcome to RPJE scenario feature ! This is step 0, action on the mountain to unlock step 1 please !", null); }, 0));
 
 	var callback_tmp = function(){RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(2);};

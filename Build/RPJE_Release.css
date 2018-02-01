@@ -1,0 +1,120 @@
+canvas 
+{
+    background-color: black;
+    height: 100%;
+    width: 100%;
+}
+
+.NoCanvasAntialias
+{
+     image-rendering: optimizeSpeed;             /* Older versions of FF          */
+      image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+      image-rendering: -webkit-optimize-contrast; /* Safari                        */
+      image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+      image-rendering: pixelated;                 /* Awesome future-browsers       */
+      -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
+}
+
+body
+{
+    margin : 0;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+}
+
+html
+{
+    margin : 0;
+
+    height: 100%;
+    width: 100%;
+}
+
+
+.JoystickMain
+{
+    width: 150px;
+    height: 150px;
+    background-color: black;
+    opacity : 0.6;
+    border-radius: 50%;
+    border: white 1px solid;
+}
+
+
+.Dialog
+{
+    width: 80%;
+    min-height: 50px;
+    background-color: black;
+    opacity : 0.6;
+    border-radius: 15px;
+    border: white 1px solid;
+    font-size: 2em;
+
+    padding : 0 10px;
+
+    color: white;
+
+    position: absolute;
+    top: 25%;
+    right: 10%;
+
+    display: none;
+}
+
+.Joystick
+{
+    width: 50px;
+    height: 50px;
+
+    position: relative;
+    background-color: white;
+    border: black 1px solid;
+    border-radius: 50%;
+    opacity : 0.5;
+}
+
+.JoystickZone
+{
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+}
+
+.noselect
+{
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.child
+{
+
+    flex-grow: 1;
+}
+
+.heightFlex
+{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+#GameZone
+{
+    width: 256;
+    height: 144;
+}
+
+/*##################################################*/

@@ -1,0 +1,14 @@
+include:../Src/UI/Dialog/Dialog.js
+include:../Src/UI/Popup/Popup.js
+include:../Src/Other/PairStruct.js
+include:../Src/Other/RandomSTR.js
+include:../Src/Libs/SimpleJoystick.js
+include:../Src/Engine/HTMLEventsManager.js
+include:../Src/Engine/ActionManager.js
+include:../Src/Scenario/ScenarioManager.js
+include:../Src/Network/NetworkManager.js
+include:../Src/Engine/Player.js
+include:../Src/Engine/Map.js
+include:../Src/Display/DisplayManager.js
+include:../Src/Engine/Engine.js
+include:../Src/Other/RPJE_Tools.js
