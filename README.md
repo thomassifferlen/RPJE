@@ -7,10 +7,7 @@
 ## How to use ?
 [Comming Soon]  
 
-index.html is a working test project, you should refers to this file.
-
-/!\USE WITH HTML TOUCH DEVICES JOYSTICK ONLY/!\  
-EnableJoystick();  
+See RPJE/Example/  
 
 ## Credits to :
 
