@@ -53,6 +53,8 @@ class RPJE_Engine
 
 		this.player = new Player("PlayerName");
 
+		this.NpcArray = new Array();
+
 		this.player_Guest_Multiplayer = new Player("Guest");
 
 		for(var x = 0 ; x < this.config.worldSize ; x++)
