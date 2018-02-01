@@ -1,7 +1,6 @@
 
 var MainEngine = "NULL";
 
-var stats ;
 
 class RPJE_Config
 {
@@ -73,10 +72,6 @@ class RPJE_Engine
 
 	    this.TickFunc_Array = [];
 
-	    stats = new Stats();
-		stats.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
-		//document.body.appendChild( stats.dom );
-
 	    console.log("[INFO] Engine Ready");
 	}
 
@@ -147,8 +142,6 @@ class RPJE_Engine
 
 	tick()
 	{
-		stats.begin();
-
 		if(this.is_Ready)
 		{
 	        for( var i = 0 ; i < this.TickFunc_Array.length ; i++ )
@@ -190,8 +183,6 @@ class RPJE_Engine
 		{
 			console.warn("[INFO] tick() -> Engine is_Ready is set to False");
 		}
-
-		stats.end();
 	}
 }
 
