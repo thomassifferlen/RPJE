@@ -11,9 +11,6 @@ function LinkStart()
 
 function main()
 {
-	LoadJoystick();
-	LoadUI_Events();
-
 	RPJE_SetMainEngine(new RPJE_Engine(new RPJE_Config(16,9,4, 16)));
 
 	//Set Player_Purple img for all frames and all directions ( 4 frame loop sprites)
@@ -102,9 +99,6 @@ function main()
 	RPJE_GetEngine().displayManager.loadTile("Assets/World/black.png", 99, false);
 
 
-	//Enable Joystick and disable Keyboard - DisableJoystick() for Keyboard only
-	EnableJoystick();
-
 	//world and maps JSON format
 	RPJE_GetEngine().SetWorldMap(0, 0, WORLD_MAPS_TEST1);
 	RPJE_GetEngine().currentMap.loadMapJSON(RPJE_GetEngine().world[0][0]);
@@ -116,25 +110,6 @@ function main()
 	RPJE_GetEngine().currentMap.setLightSource(6,4,0);
 	RPJE_GetEngine().currentMap.setLightSource(7,4,0);
 	RPJE_GetEngine().currentMap.EnableLights = true;
-
-
-	//This Will execute this function each engine tick
-	var joystickTick_Func = function()
-	{
-		if( is_JoystickEnabled() )
-	    {
-	        if(GetJoystick_X_Percent() != 0 || GetJoystick_Y_Percent() != 0)
-	        {
-	        	RPJE_GetEngine().player.is_Moving = true;
-	        }
-	        else
-	        {
-	        	RPJE_GetEngine().player.is_Moving = false;
-	        }
-	    }
-	};
-
-	RPJE_GetEngine().Add_Tick_Function(new RPJE_Tick_Function(0, joystickTick_Func));
 
 	//Example of disabled tick function
 	RPJE_GetEngine().Add_Tick_Function(new RPJE_Tick_Function(1, function(){ console.log("tick"); }));
@@ -167,5 +142,8 @@ function main()
 	RPJE_GetEngine().scenarioManager.Add_Scenario_Step(newStep2);
 
 	RPJE_StartEngine(50);
+
+	EnableJoystick();
+	LoadUI_Events();
 
 }
