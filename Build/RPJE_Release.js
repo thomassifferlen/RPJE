@@ -1,4 +1,21 @@
 
+//[GENERATED] : INCLUDE : ../Src/HTML_Elements/HTML_Elements.js
+function Add_HTML_Joystick()
+{
+	document.body.innerHTML += '<div class="JoystickZone noselect"><div class="JoystickMain" id="JoystickMain"><div class="Joystick" id="Joystick"></div></div></div>';
+}
+
+function Add_HTML_Dialog_Zone()
+{
+	document.body.innerHTML += '<div id="Dialog" class="Dialog"></div>';
+}
+
+function Add_HTML_Game_Responsive_Canvas()
+{
+	document.body.innerHTML += '<div class="child"></div><div class="heightFlex"><div class="child"></div><div id="GameZone"><canvas id="Game" class="NoCanvasAntialias"></canvas></div><div class="child"></div></div><div class="child"></div>';	
+}
+
+
 //[GENERATED] : INCLUDE : ../Src/UI/Dialog/Dialog.js
 // DIALOG BASED
 var CurrentDialog = "";
@@ -449,142 +466,6 @@ function GetJoystick_Max()
 
 
 console.log("SimpleJoystick.js - By https://github.com/thomassifferlen");
-//[GENERATED] : INCLUDE : ../Src/Engine/HTMLEventsManager.js
-var _JoystickEnabled = false;
-
-function EnableJoystick()
-{
-	_JoystickEnabled = true;
-}
-
-function DisableJoystick()
-{
-	_JoystickEnabled = false;
-}
-
-function is_JoystickEnabled()
-{
-	return _JoystickEnabled;
-}
-
-function MoveUp(doyoumove)
-{
-	if (doyoumove)
-	{
-		MainEngine.player.is_Moving = true;
-		MainEngine.player.direction = PLAYER_DIRECTION_UP;
-	}
-	else
-	{
-		if(MainEngine.player.direction == PLAYER_DIRECTION_UP)
-		{
-			MainEngine.player.is_Moving = false;
-		}
-	}
-}
-
-function MoveRight(doyoumove)
-{
-	if (doyoumove)
-	{
-		MainEngine.player.is_Moving = true;
-		MainEngine.player.direction = PLAYER_DIRECTION_RIGHT;
-	}
-	else
-	{
-		if(MainEngine.player.direction == PLAYER_DIRECTION_RIGHT)
-		{
-			MainEngine.player.is_Moving = false;
-		}
-	}
-}
-
-function MoveLeft(doyoumove)
-{
-	if (doyoumove)
-	{
-		MainEngine.player.is_Moving = true;
-		MainEngine.player.direction = PLAYER_DIRECTION_LEFT;
-	}
-	else
-	{
-		if(MainEngine.player.direction == PLAYER_DIRECTION_LEFT)
-		{
-			MainEngine.player.is_Moving = false;
-		}
-	}
-}
-
-function MoveDown(doyoumove)
-{
-	if (doyoumove)
-	{
-		MainEngine.player.is_Moving = true;
-		MainEngine.player.direction = PLAYER_DIRECTION_DOWN;
-	}
-	else
-	{
-		if(MainEngine.player.direction == PLAYER_DIRECTION_DOWN)
-		{
-			MainEngine.player.is_Moving = false;
-		}
-	}
-}
-
-window.onkeydown = function(event)
-{
-	var key = event.which || event.keyCode;
-
-	switch(key)
-	{
-		case 38 : case 122 : case 119 : case 90 : case 87 : // Flèche haut, z, w, Z, W
-			MoveUp(true);
-		break;
-
-		case 40 : case 115 : case 83 : // Flèche bas, s, S
-			MoveDown(true);
-		break;
-
-		case 37 : case 113 : case 97 : case 81 : case 65 : // Flèche gauche, q, a, Q, A
-			MoveLeft(true);
-		break;
-
-		case 39 : case 100 : case 68 : // Flèche droite, d, D
-			MoveRight(true);
-		break;
-	}
-}
-
-window.onkeyup = function(event)
-{
-	var key = event.which || event.keyCode;
-
-	switch(key)
-	{
-		case 38 : case 122 : case 119 : case 90 : case 87 : // Flèche haut, z, w, Z, W
-			MoveUp(false);	
-		break;
-
-		case 40 : case 115 : case 83 : // Flèche bas, s, S
-			MoveDown(false);
-		break;
-
-		case 37 : case 113 : case 97 : case 81 : case 65 : // Flèche gauche, q, a, Q, A
-			MoveLeft(false);
-		break;
-
-		case 39 : case 100 : case 68 : // Flèche droite, d, D
-			MoveRight(false);
-		break;
-	}
-}
-
-window.onresize = function(event)
-{
-    RPJE_GetEngine().displayManager.screenFit(RPJE_GetEngine().config.nbr_Width, RPJE_GetEngine().config.nbr_Height);
-};
-
-console.log("[INFO] EventsManager Loaded");
 //[GENERATED] : INCLUDE : ../Src/Engine/ActionManager.js
 class Action
 {
@@ -1615,7 +1496,7 @@ class RPJE_Config
 		this.nbr_Width = nbr_Width;
 		this.worldSize = worldSize;
 		this.tileSize = tileSize;
-		this.EngineSpeed = 40
+		this.EngineSpeed = 40;
 	}
 }
 
@@ -1641,6 +1522,10 @@ class RPJE_Engine
 {
 	constructor(myRPJE_Config)
 	{
+		Add_HTML_Game_Responsive_Canvas();
+		Add_HTML_Dialog_Zone();
+		Add_HTML_Joystick();
+
 		this.is_Ready = false;
 
 		this.config = myRPJE_Config;
@@ -1818,3 +1703,49 @@ function RPJE_GetEngine()
 {
 	return MainEngine;
 }
+//[GENERATED] : INCLUDE : ../Src/Engine/HTMLEventsManager.js
+var _JoystickEnabled = false;
+
+function EnableJoystick()
+{
+	LoadJoystick();
+	
+	_JoystickEnabled = true;
+
+	var joystickTick_Func = function()
+	{
+		if( is_JoystickEnabled() )
+	    {
+	        if(GetJoystick_X_Percent() != 0 || GetJoystick_Y_Percent() != 0)
+	        {
+	        	RPJE_GetEngine().player.is_Moving = true;
+	        }
+	        else
+	        {
+	        	RPJE_GetEngine().player.is_Moving = false;
+	        }
+	    }
+	};
+
+	RPJE_GetEngine().Add_Tick_Function(new RPJE_Tick_Function(0, joystickTick_Func));
+}
+
+function DisableJoystick()
+{
+	_JoystickEnabled = false;
+}
+
+function is_JoystickEnabled()
+{
+	return _JoystickEnabled;
+}
+
+window.onresize = function(event)
+{
+    RPJE_GetEngine().displayManager.screenFit(RPJE_GetEngine().config.nbr_Width, RPJE_GetEngine().config.nbr_Height);
+};
+
+//This Will execute this function each engine tick
+
+
+console.log("[INFO] EventsManager Loaded");

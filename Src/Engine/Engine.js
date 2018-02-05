@@ -10,7 +10,7 @@ class RPJE_Config
 		this.nbr_Width = nbr_Width;
 		this.worldSize = worldSize;
 		this.tileSize = tileSize;
-		this.EngineSpeed = 40
+		this.EngineSpeed = 40;
 	}
 }
 
@@ -36,6 +36,10 @@ class RPJE_Engine
 {
 	constructor(myRPJE_Config)
 	{
+		Add_HTML_Game_Responsive_Canvas();
+		Add_HTML_Dialog_Zone();
+		Add_HTML_Joystick();
+
 		this.is_Ready = false;
 
 		this.config = myRPJE_Config;

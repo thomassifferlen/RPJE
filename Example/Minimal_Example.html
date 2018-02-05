@@ -1,46 +1,42 @@
-<head>
-	<link rel="stylesheet" type="text/css" href="../Build/RPJE_Release.css">
-
 	<script type='text/javascript' src='World_Maps.js'></script>
-
-	<script type='text/javascript' src='Libs/stats.js'></script>
 	<script type='text/javascript' src='Libs/jquery-3.2.1.min.js'></script>
-
+	<link rel="stylesheet" type="text/css" href="../Build/RPJE_Release.css">
 	<script type="text/javascript" src="../Build/RPJE_Release.js"></script>
-
 	<script type="text/javascript" src="Minimal_Example.js"></script>
-
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-</head>
+	<script type="text/javascript">
+			function main()
+			{
+				RPJE_SetMainEngine(new RPJE_Engine(new RPJE_Config(16,9,4, 16)));
 
-<body onload="main()">
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_UP, "Assets/Player_Purple/player_Up_1.png");
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_UP, "Assets/Player_Purple/player_Up_2.png");
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_UP, "Assets/Player_Purple/player_Up_1.png");
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_UP, "Assets/Player_Purple/player_Up_3.png");
 
-	<div class="child"></div>
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_DOWN, "Assets/Player_Purple/player_Down_1.png");
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_DOWN, "Assets/Player_Purple/player_Down_2.png");
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_DOWN, "Assets/Player_Purple/player_Down_1.png");
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_DOWN, "Assets/Player_Purple/player_Down_3.png");
 
-	<div class="heightFlex">
-		<div class="child"></div>
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_RIGHT, "Assets/Player_Purple/player_Right_1.png");
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_RIGHT, "Assets/Player_Purple/player_Right_2.png");
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_RIGHT, "Assets/Player_Purple/player_Right_1.png");
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_RIGHT, "Assets/Player_Purple/player_Right_3.png");
 
-		<div id="GameZone">
-			<canvas id="Game" class="NoCanvasAntialias">	</canvas>
-		</div>
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_LEFT, "Assets/Player_Purple/player_Left_1.png");
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_LEFT, "Assets/Player_Purple/player_Left_2.png");
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_LEFT, "Assets/Player_Purple/player_Left_1.png");
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_LEFT, "Assets/Player_Purple/player_Left_3.png");
 
-		<div class="child"></div>
-	</div>
-	
+				//Grounds
+				RPJE_GetEngine().displayManager.loadTile("Assets/World/ground1.png", 0, true); // base ground
 
-	<div class="child"></div>
+				RPJE_StartEngine(50);
 
-	<div class="JoystickZone noselect">
-		<div class="JoystickMain" id="JoystickMain">
-			<div class="Joystick" id="Joystick">
-			</div>
-		</div>
-	</div>
+				EnableJoystick();
+			}
+	</script>
 
-
-	<div id="Dialog" class="Dialog"></div>
-
-	
-
-</body>
+<body onload="main()"></body>
