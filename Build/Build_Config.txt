@@ -14,3 +14,5 @@ include:../Src/Display/DisplayManager.js
 include:../Src/Engine/Engine.js
 include:../Src/Other/RPJE_Tools.js
 include:../Src/Engine/HTMLEventsManager.js
+include:../Src/Engine/HTMLEventsManager.js
+include:../Src/JS_Obj_Load/RPJE_JS_Obj_Load_Tools.js

@@ -1749,3 +1749,114 @@ window.onresize = function(event)
 
 
 console.log("[INFO] EventsManager Loaded");
+//[GENERATED] : INCLUDE : ../Src/Engine/HTMLEventsManager.js
+var _JoystickEnabled = false;
+
+function EnableJoystick()
+{
+	LoadJoystick();
+	
+	_JoystickEnabled = true;
+
+	var joystickTick_Func = function()
+	{
+		if( is_JoystickEnabled() )
+	    {
+	        if(GetJoystick_X_Percent() != 0 || GetJoystick_Y_Percent() != 0)
+	        {
+	        	RPJE_GetEngine().player.is_Moving = true;
+	        }
+	        else
+	        {
+	        	RPJE_GetEngine().player.is_Moving = false;
+	        }
+	    }
+	};
+
+	RPJE_GetEngine().Add_Tick_Function(new RPJE_Tick_Function(0, joystickTick_Func));
+}
+
+function DisableJoystick()
+{
+	_JoystickEnabled = false;
+}
+
+function is_JoystickEnabled()
+{
+	return _JoystickEnabled;
+}
+
+window.onresize = function(event)
+{
+    RPJE_GetEngine().displayManager.screenFit(RPJE_GetEngine().config.nbr_Width, RPJE_GetEngine().config.nbr_Height);
+};
+
+//This Will execute this function each engine tick
+
+
+console.log("[INFO] EventsManager Loaded");
+//[GENERATED] : INCLUDE : ../Src/JS_Obj_Load/RPJE_JS_Obj_Load_Tools.js
+function RPJE_JS_Obj_Load_Player_Sprites(JS_Obj)
+{
+	for (PlayerDirection in JS_Obj)
+	{
+
+		if(PlayerDirection == "PLAYER_DIRECTION_UP")
+		{
+			for(var i = 0; i < JS_Obj[PlayerDirection].length ; i++)
+			{
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_UP, JS_Obj[PlayerDirection][i]);
+			}
+		}
+		else if(PlayerDirection == "PLAYER_DIRECTION_DOWN")
+		{
+			for(var i = 0; i < JS_Obj[PlayerDirection].length ; i++)
+			{
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_DOWN, JS_Obj[PlayerDirection][i]);
+			}
+		}
+		else if(PlayerDirection == "PLAYER_DIRECTION_RIGHT")
+		{
+			for(var i = 0; i < JS_Obj[PlayerDirection].length ; i++)
+			{
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_RIGHT, JS_Obj[PlayerDirection][i]);
+			}
+		}
+		else if(PlayerDirection == "PLAYER_DIRECTION_LEFT")
+		{
+			for(var i = 0; i < JS_Obj[PlayerDirection].length ; i++)
+			{
+				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_LEFT, JS_Obj[PlayerDirection][i]);
+			}
+		}
+		else
+		{
+			console.warn("[WARN] RPJE_JS_Obj_Load_Player_Sprites() - Invalid player direction [" +  PlayerDirection + "],  ignoring ...");
+		}
+	}
+}
+
+function RPJE_JS_Obj_Load_Tile(JS_Obj)
+{
+	for (tile_Type in JS_Obj)
+	{
+		if(tile_Type == "mapTiles")
+		{
+			for(var i = 0; i < JS_Obj[tile_Type].length ; i++)
+			{
+				RPJE_GetEngine().displayManager.loadTile(JS_Obj[tile_Type][i].path, JS_Obj[tile_Type][i].id, true);
+			}
+		}
+		else if(tile_Type == "mapObjects")
+		{
+			for(var i = 0; i < JS_Obj[tile_Type].length ; i++)
+			{
+				RPJE_GetEngine().displayManager.loadTile(JS_Obj[tile_Type][i].path, JS_Obj[tile_Type][i].id, false);
+			}
+		}
+		else
+		{
+			console.warn("[WARN] RPJE_JS_Obj_Load_Tile() - Invalid tile type [" +  tile_Type + "],  ignoring ...");
+		}
+	}
+}
