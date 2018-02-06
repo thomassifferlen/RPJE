@@ -776,7 +776,7 @@ class Player
     this.position = new PairStruct(100,100);
     this.bag = new Array();
 
-    this.spriteNumber = 1;
+    this.spriteNumber = 0;
 
     this.direction = PLAYER_DIRECTION_DOWN;
 
@@ -1334,12 +1334,6 @@ class DisplayManager
 
     this.tilesGroundIMG_Array = [];
     this.tilesObjIMG_Array = [];
-    this.tilesLightMap = [];
-
-    this.tilesLightMap.push(new SpriteTile("Display/LightMap/shadow_low.png", 1))
-    this.tilesLightMap.push(new SpriteTile("Display/LightMap/shadow_medium.png", 2))
-    this.tilesLightMap.push(new SpriteTile("Display/LightMap/shadow_high.png", 3))
-    this.tilesLightMap.push(new SpriteTile("Display/LightMap/shadow_darkness.png", 4))
 
     this.tilesIMG_Array = new Array();
 
@@ -1830,7 +1824,7 @@ window.onresize = function(event)
 
 console.log("[INFO] EventsManager Loaded");
 //[GENERATED] : INCLUDE : ../Src/JS_Obj_Load/RPJE_JS_Obj_Load_Tools.js
-function RPJE_JS_Obj_Load_Player_Sprites(JS_Obj)
+function RPJE_JS_Obj_Load_Player_Sprites(JS_Obj, is_guest_player)
 {
 	for (PlayerDirection in JS_Obj)
 	{
@@ -1839,28 +1833,57 @@ function RPJE_JS_Obj_Load_Player_Sprites(JS_Obj)
 		{
 			for(var i = 0; i < JS_Obj[PlayerDirection].length ; i++)
 			{
-				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_UP, JS_Obj[PlayerDirection][i]);
+				if(is_guest_player)
+				{
+					RPJE_GetEngine().player_Guest_Multiplayer.AddSprite( PLAYER_DIRECTION_UP, JS_Obj[PlayerDirection][i]);
+				}
+				else
+				{
+					RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_UP, JS_Obj[PlayerDirection][i]);
+				}
+				
 			}
 		}
 		else if(PlayerDirection == "PLAYER_DIRECTION_DOWN")
 		{
 			for(var i = 0; i < JS_Obj[PlayerDirection].length ; i++)
 			{
-				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_DOWN, JS_Obj[PlayerDirection][i]);
+				if(is_guest_player)
+				{
+					RPJE_GetEngine().player_Guest_Multiplayer.AddSprite( PLAYER_DIRECTION_DOWN, JS_Obj[PlayerDirection][i]);
+				}
+				else
+				{
+					RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_DOWN, JS_Obj[PlayerDirection][i]);
+				}
 			}
 		}
 		else if(PlayerDirection == "PLAYER_DIRECTION_RIGHT")
 		{
 			for(var i = 0; i < JS_Obj[PlayerDirection].length ; i++)
 			{
-				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_RIGHT, JS_Obj[PlayerDirection][i]);
+				if(is_guest_player)
+				{
+					RPJE_GetEngine().player_Guest_Multiplayer.AddSprite( PLAYER_DIRECTION_RIGHT, JS_Obj[PlayerDirection][i]);
+				}
+				else
+				{
+					RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_RIGHT, JS_Obj[PlayerDirection][i]);
+				}
 			}
 		}
 		else if(PlayerDirection == "PLAYER_DIRECTION_LEFT")
 		{
 			for(var i = 0; i < JS_Obj[PlayerDirection].length ; i++)
 			{
-				RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_LEFT, JS_Obj[PlayerDirection][i]);
+				if(is_guest_player)
+				{
+					RPJE_GetEngine().player_Guest_Multiplayer.AddSprite( PLAYER_DIRECTION_LEFT, JS_Obj[PlayerDirection][i]);
+				}
+				else
+				{
+					RPJE_GetEngine().player.AddSprite( PLAYER_DIRECTION_LEFT, JS_Obj[PlayerDirection][i]);
+				}
 			}
 		}
 		else

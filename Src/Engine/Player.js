@@ -38,7 +38,7 @@ class Player
     this.position = new PairStruct(100,100);
     this.bag = new Array();
 
-    this.spriteNumber = 1;
+    this.spriteNumber = 0;
 
     this.direction = PLAYER_DIRECTION_DOWN;
 

@@ -22,12 +22,6 @@ class DisplayManager
 
     this.tilesGroundIMG_Array = [];
     this.tilesObjIMG_Array = [];
-    this.tilesLightMap = [];
-
-    this.tilesLightMap.push(new SpriteTile("Display/LightMap/shadow_low.png", 1))
-    this.tilesLightMap.push(new SpriteTile("Display/LightMap/shadow_medium.png", 2))
-    this.tilesLightMap.push(new SpriteTile("Display/LightMap/shadow_high.png", 3))
-    this.tilesLightMap.push(new SpriteTile("Display/LightMap/shadow_darkness.png", 4))
 
     this.tilesIMG_Array = new Array();
 

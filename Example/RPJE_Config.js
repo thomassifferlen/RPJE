@@ -6,6 +6,14 @@ var RPJE_CONFIG_playerSprites =
 	"PLAYER_DIRECTION_DOWN": ["Assets/Player_Purple/player_Down_1.png", "Assets/Player_Purple/player_Down_2.png", "Assets/Player_Purple/player_Down_1.png", "Assets/Player_Purple/player_Down_3.png"]
 };
 
+var RPJE_CONFIG_GuestPlayerSprites = 
+{
+	"PLAYER_DIRECTION_UP": ["Assets/Player/player_Up_1.png", "Assets/Player/player_Up_2.png", "Assets/Player/player_Up_1.png", "Assets/Player/player_Up_3.png"],
+	"PLAYER_DIRECTION_RIGHT": ["Assets/Player/player_Right_1.png", "Assets/Player/player_Right_2.png", "Assets/Player/player_Right_1.png", "Assets/Player/player_Right_3.png"],
+	"PLAYER_DIRECTION_LEFT": ["Assets/Player/player_Left_1.png", "Assets/Player/player_Left_2.png", "Assets/Player/player_Left_1.png", "Assets/Player/player_Left_3.png"],
+	"PLAYER_DIRECTION_DOWN": ["Assets/Player/player_Down_1.png", "Assets/Player/player_Down_2.png", "Assets/Player/player_Down_1.png", "Assets/Player/player_Down_3.png"]
+};
+
 var RPJE_CONFIG_Tiles = 
 {
 	"mapTiles":
@@ -17,11 +25,116 @@ var RPJE_CONFIG_Tiles =
 		{
 			"id" : 1,
 			"path" : "Assets/World/ground2.png" 
+		},
+		{
+			"id" : 2,
+			"path" : "Assets/World/ground3.png" 
+		},
+		{
+			"id" : 3,
+			"path" : "Assets/World/ground4.png" 
+		},
+		{
+			"id" : 4,
+			"path" : "Assets/World/ground5.png" 
+		},
+		{
+			"id" : 5,
+			"path" : "Assets/World/grass.png" 
+		},
+		{
+			"id" : 6,
+			"path" : "Assets/World/plant.png" 
+		},
+		{
+			"id" : 7,
+			"path" : "Assets/World/ground_indoor.png" 
+		},
+		{
+			"id" : 8,
+			"path" : "Assets/World/ground_indoor2.png" 
+		},
+		{
+			"id" : 99,
+			"path" : "Assets/World/black.png" 
+		}
+	],
+	"mapObjects":
+	[
+		{
+			"id" : 0,
+			"path" : "Assets/Objects/sign.png" 
+		},
+		{
+			"id" : 1,
+			"path" : "Assets/World/Rock1.png" 
+		},
+		{
+			"id" : 2,
+			"path" : "Assets/World/Rock2.png" 
+		},
+		{
+			"id" : 3,
+			"path" : "Assets/World/Rock3.png" 
+		},
+		{
+			"id" : 4,
+			"path" : "Assets/World/Rock4.png" 
+		},
+		{
+			"id" : 5,
+			"path" : "Assets/World/Rock5.png" 
+		},
+		{
+			"id" : 6,
+			"path" : "Assets/World/Rock6.png" 
+		},
+		{
+			"id" : 7,
+			"path" : "Assets/World/Rock7.png" 
+		},
+		{
+			"id" : 8,
+			"path" : "Assets/World/Rock8.png" 
+		},
+		{
+			"id" : 9,
+			"path" : "Assets/World/Rock9.png" 
+		},
+		{
+			"id" : 10,
+			"path" : "Assets/Objects/woodsticks.png" 
+		},
+		{
+			"id" : 11,
+			"path" : "Assets/Objects/indoor_furniture_small_1.png" 
+		},
+		{
+			"id" : 12,
+			"path" : "Assets/Objects/indoor_furniture_small_2.png" 
+		},
+		{
+			"id" : 13,
+			"path" : "Assets/Objects/indoor_furniture_TV_1.png" 
+		},
+		{
+			"id" : 14,
+			"path" : "Assets/Objects/indoor_furniture_TV_2.png" 
+		},
+		{
+			"id" : 15,
+			"path" : "Assets/Objects/indoor_furniture_TV_3.png" 
+		},
+		{
+			"id" : 16,
+			"path" : "Assets/Objects/indoor_furniture_TV_4.png" 
+		},
+		{
+			"id" : 99,
+			"path" : "Assets/World/black.png" 
 		}
 	]
-}
-
-
+};
 
 var WORLD_MAPS_TEST2 ='{"mapTiles":["0-0-8","0-1-8","0-2-8","0-3-8","0-4-8","0-5-8","0-6-8","0-7-8","0-8-7","1-0-8","1-1-8","1-2-8","1-3-8","1-4-8","1-5-8","1-6-8","1-7-8","1-8-7","2-0-8","2-1-8","2-2-8","2-3-8","2-4-8","2-5-8","2-6-8","2-7-8","2-8-7","3-0-7","3-1-7","3-2-7","3-3-7","3-4-7","3-5-7","3-6-8","3-7-8","3-8-7","4-0-7","4-1-7","4-2-7","4-3-7","4-4-7","4-5-8","4-6-8","4-7-8","4-8-7","5-0-7","5-1-7","5-2-7","5-3-7","5-4-7","5-5-8","5-6-8","5-7-8","5-8-7","6-0-7","6-1-7","6-2-7","6-3-7","6-4-7","6-5-7","6-6-8","6-7-8","6-8-7","7-0-7","7-1-7","7-2-7","7-3-7","7-4-7","7-5-7","7-6-8","7-7-8","7-8-7","8-0-7","8-1-7","8-2-7","8-3-7","8-4-7","8-5-7","8-6-8","8-7-8","8-8-8","9-0-7","9-1-7","9-2-7","9-3-7","9-4-7","9-5-7","9-6-8","9-7-8","9-8-8","10-0-7","10-1-7","10-2-7","10-3-7","10-4-7","10-5-7","10-6-8","10-7-8","10-8-7","11-0-7","11-1-7","11-2-7","11-3-7","11-4-7","11-5-7","11-6-8","11-7-8","11-8-7","12-0-7","12-1-7","12-2-7","12-3-7","12-4-7","12-5-7","12-6-8","12-7-8","12-8-7","13-0-7","13-1-7","13-2-7","13-3-7","13-4-7","13-5-7","13-6-8","13-7-8","13-8-7","14-0-7","14-1-7","14-2-7","14-3-7","14-4-7","14-5-7","14-6-8","14-7-8","14-8-7","15-0-7","15-1-7","15-2-7","15-3-7","15-4-7","15-5-7","15-6-8","15-7-8","15-8-7"],"mapObjects":["3-8-16","4-4-11","4-5-14","4-8-17","5-4-12","5-5-13","8-5-16","9-5-17","12-4-19","12-5-18"]}';
 var WORLD_MAPS_TEST1 = '{"mapTiles":["7-0-6","8-1-6","9-1-6","10-1-6","9-2-6","12-0-6","15-0-6","14-0-6","15-1-6"],"mapObjects":["8-0-10","9-0-10","10-0-10","11-0-10","4-2-0", "0-0-5","1-0-5","2-0-6","0-1-8","1-1-8","2-1-9","0-8-5","1-8-5","2-8-6", "0-7-2", "1-7-2", "2-7-3" , "15-4-5", "15-3-5", "14-3-4", "14-4-4", "14-2-1", "15-2-2", "15-5-8", "14-5-7" ] }'
