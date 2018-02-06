@@ -1470,16 +1470,50 @@ class DisplayManager
         {
             for(var y = 0 ; y < mapToDraw.nbr_Height ; y++)
             {
-                for( var i = 0 ; i < this.tilesLightMap.length ; i++ )
-                {
-                    if( this.tilesLightMap[i].TileValue == mapToDraw.mapLights[x][y])
-                    {
-                        this.ctx.drawImage( this.tilesLightMap[i].img , x * this.tileSize, y * this.tileSize - (this.tileSize - this.tilesLightMap[i].img.naturalHeight));
-                    }
-                }
+              switch(mapToDraw.mapLights[x][y])
+              {
+                  case 0 :
+                    this.ctx.beginPath();
+                    this.ctx.rect(x * this.tileSize, y * this.tileSize, this.tileSize, this.tileSize);
+                    this.ctx.fillStyle = "rgba(0, 0, 0, 0)";
+                    this.ctx.fill();
+                  break;
+
+                  case 1 :
+                    this.ctx.beginPath();
+                    this.ctx.rect(x * this.tileSize, y * this.tileSize, this.tileSize, this.tileSize);
+                    this.ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+                    this.ctx.fill();
+                  break;
+
+                  case 2 :
+                    this.ctx.beginPath();
+                    this.ctx.rect(x * this.tileSize, y * this.tileSize, this.tileSize, this.tileSize);
+                    this.ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+                    this.ctx.fill();
+                  break;
+
+                  case 3 :
+                    this.ctx.beginPath();
+                    this.ctx.rect(x * this.tileSize, y * this.tileSize, this.tileSize, this.tileSize);
+                    this.ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
+                    this.ctx.fill();
+                  break;
+
+                  case 4 :
+                    this.ctx.beginPath();
+                    this.ctx.rect(x * this.tileSize, y * this.tileSize, this.tileSize, this.tileSize);
+                    this.ctx.fillStyle = "rgba(0, 0, 0, 0.9)";
+                    this.ctx.fill();
+                  break;
+
+                  default:
+                    console.log("[WARN] Invalid light / shadow value, ignoring ...");
+                  break;
+
+              }
             }
         }
-    
   }
 
 }
