@@ -67,4 +67,6 @@ function main()
 	EnableJoystick();
 	LoadUI_Events();
 
+	RPJE_MAP_EDITOR_InitEditor();
+
 }

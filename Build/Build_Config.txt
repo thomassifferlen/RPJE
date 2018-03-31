@@ -16,3 +16,4 @@ include:../Src/Other/RPJE_Tools.js
 include:../Src/Engine/HTMLEventsManager.js
 include:../Src/Engine/HTMLEventsManager.js
 include:../Src/JS_Obj_Load/RPJE_JS_Obj_Load_Tools.js
+include:../Src/MapEditor/EditMap.js
