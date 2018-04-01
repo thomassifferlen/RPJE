@@ -65,7 +65,7 @@ function main()
 	RPJE_StartEngine(50);
 
 	EnableJoystick();
-	LoadUI_Events();
+	//LoadUI_Events();
 
 	RPJE_MAP_EDITOR_InitEditor();
 

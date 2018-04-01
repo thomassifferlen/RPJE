@@ -1974,16 +1974,18 @@ function RPJE_MAP_EDITOR_Open_Tiles_Select_Menu()
 
 	for(var i = 0 ; i < RPJE_GetEngine().displayManager.tilesGroundIMG_Array.length ; i ++)
 	{
-		$("#Tiles_Select_Menu").append( "<img src='" + RPJE_GetEngine().displayManager.tilesGroundIMG_Array[i].path + "' style='margin: 5px; height : "+  Math.floor(rescaled_tileSize_W).toString() +";width : "+  Math.floor(rescaled_tileSize_W).toString() +";'></img>");
+		$("#Tiles_Select_Menu").append( "<img onclick='RPJE_MAP_EDITOR_SelectTile("+  RPJE_GetEngine().displayManager.tilesGroundIMG_Array[i].TileValue +", true)' src='" + RPJE_GetEngine().displayManager.tilesGroundIMG_Array[i].path + "' style='margin: 5px; height : "+  Math.floor(rescaled_tileSize_W).toString() +";width : "+  Math.floor(rescaled_tileSize_W).toString() +";'></img>");
 	}
 
 	$("#Tiles_Select_Menu").append("<hr>");
 
 	$("#Tiles_Select_Menu").append("</br></br>");
 
-	for(var i = 0 ; i < RPJE_GetEngine().displayManager.tilesGroundIMG_Array.length ; i ++)
+	$("#Tiles_Select_Menu").append("<button onclick='RPJE_MAP_EDITOR_SelectTile( -1 , false)' style='margin: 5px; height : "+  Math.floor(rescaled_tileSize_W).toString() +";'>No Object</button>");
+
+	for(var i = 0 ; i < RPJE_GetEngine().displayManager.tilesObjIMG_Array.length ; i ++)
 	{
-		$("#Tiles_Select_Menu").append( "<img src='" + RPJE_GetEngine().displayManager.tilesObjIMG_Array[i].path + "' style='margin: 5px; height : "+  Math.floor(rescaled_tileSize_W).toString() +"; width : "+  Math.floor(rescaled_tileSize_W).toString() +";'></img>");
+		$("#Tiles_Select_Menu").append( "<img onclick='RPJE_MAP_EDITOR_SelectTile("+  RPJE_GetEngine().displayManager.tilesObjIMG_Array[i].TileValue +", false)' src='" + RPJE_GetEngine().displayManager.tilesObjIMG_Array[i].path + "' style='margin: 5px; height : "+  Math.floor(rescaled_tileSize_W).toString() +"; width : "+  Math.floor(rescaled_tileSize_W).toString() +";'></img>");
 	}
 
 	$("#Tiles_Select_Menu").append("</br></br>");
@@ -2012,5 +2014,7 @@ function RPJE_MAP_EDITOR_SelectTile(tile,is_ground_bool)
 
 	var text = "Selected = " + RPJE_MAP_EDITOR_CurrentTile + typetmp;
 
-	console.log(text);
+	//console.log(text);
+
+	RPJE_MAP_EDITOR_Close_Tiles_Select_Menu();
 }
