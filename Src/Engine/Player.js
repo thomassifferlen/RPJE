@@ -35,7 +35,7 @@ class Player
     this.speed = 4;
     this.is_Moving = false;
 
-    this.position = new PairStruct(100,100);
+    this.position = new PairStruct(50,50);
     this.bag = new Array();
 
     this.spriteNumber = 0;
@@ -50,6 +50,18 @@ class Player
     console.log("[INFO] Player Ready");
 
   } //End constructor() function
+
+  SetPositionCoord(x, y, engineConfig)
+  {
+  		if(x > engineConfig.nbr_Width -1 || y > engineConfig.nbr_Height -1 || x < 0 || y < 0)
+  		{
+  			console.error("[ERROR] Player SetPositionCoord() invalid coordinates : " + x.toString() + " " + y.toString() + " must be between 0 / " + (engineConfig.nbr_Width -1).toString() + " and 0 / " + (engineConfig.nbr_Height -1).toString());
+  			return false;
+  		}
+
+  		this.position.x = x * engineConfig.tileSize;
+  		this.position.y = y * engineConfig.tileSize;		
+  }
 
   GetFacingMapObject(map, GameConfig)
   {

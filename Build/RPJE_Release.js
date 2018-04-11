@@ -773,7 +773,7 @@ class Player
     this.speed = 4;
     this.is_Moving = false;
 
-    this.position = new PairStruct(100,100);
+    this.position = new PairStruct(50,50);
     this.bag = new Array();
 
     this.spriteNumber = 0;
@@ -788,6 +788,18 @@ class Player
     console.log("[INFO] Player Ready");
 
   } //End constructor() function
+
+  SetPositionCoord(x, y, engineConfig)
+  {
+  		if(x > engineConfig.nbr_Width -1 || y > engineConfig.nbr_Height -1 || x < 0 || y < 0)
+  		{
+  			console.error("[ERROR] Player SetPositionCoord() invalid coordinates : " + x.toString() + " " + y.toString() + " must be between 0 / " + (engineConfig.nbr_Width -1).toString() + " and 0 / " + (engineConfig.nbr_Height -1).toString());
+  			return false;
+  		}
+
+  		this.position.x = x * engineConfig.tileSize;
+  		this.position.y = y * engineConfig.tileSize;		
+  }
 
   GetFacingMapObject(map, GameConfig)
   {
@@ -1086,6 +1098,20 @@ class Map
           this.mapTiles[x][y] = Math.floor(Math.random() * (rangeMax - rangeMin +1)) + rangeMin ;
         }
       }
+  }
+
+  clearMap()
+  {
+    for(var x = 0 ; x < this.nbr_Width ; x++)
+    {
+      for(var y = 0 ; y < this.nbr_Height ; y++)
+      {
+        this.mapTiles[x][y] = 99;
+        this.mapEvent[x][y] = -1;
+        this.mapObjects[x][y] = -1;
+        this.mapLights[x][y] = 0;
+      }
+    }
   }
 
   loadMapJSON(str_JSON)
@@ -1962,6 +1988,11 @@ function RPJE_MAP_EDITOR_Close_Tiles_Select_Menu()
 	$("#Tiles_Select_Menu").css("display", "none");
 }
 
+function RPJE_MAP_EDITOR_Export_Map_JSON()
+{
+	$("#map_export_text").val(RPJE_GetEngine().currentMap.exportJSON());
+}
+
 function RPJE_MAP_EDITOR_Open_Tiles_Select_Menu()
 {
 	var rescaled_tileSize_W = $("#Game").width() / RPJE_GetEngine().config.nbr_Width;
@@ -1990,10 +2021,25 @@ function RPJE_MAP_EDITOR_Open_Tiles_Select_Menu()
 
 	$("#Tiles_Select_Menu").append("</br></br>");
 
+	$("#Tiles_Select_Menu").append("<hr>");
+
+	$("#Tiles_Select_Menu").append("</br></br>");
+
+	$("#Tiles_Select_Menu").append("<textarea style='width : 100%;' id='map_export_text'></textarea>");
+
+	$("#Tiles_Select_Menu").append("<h2  style='text-align : center;' ><button style='width : 80%;' onclick='RPJE_MAP_EDITOR_Export_Map_JSON()' ><h3>Export Map JSON</h3></button></h2>");
+
+	$("#Tiles_Select_Menu").append("</br></br>");
+
+	$("#Tiles_Select_Menu").append("<h2  style='text-align : center;' ><button style='width : 80%;' onclick='RPJE_GetEngine().currentMap.clearMap()' ><h3>Clear Map</h3></button></h2>");
+
+	$("#Tiles_Select_Menu").append("<hr>");
+
+	$("#Tiles_Select_Menu").append("</br></br>");
+
 	$("#Tiles_Select_Menu").append("<h2  style='text-align : center;' ><button style='width : 80%;' onclick='RPJE_MAP_EDITOR_Close_Tiles_Select_Menu()' ><h3>Close</h3></button></h2>");
 
 }
-
 
 
 function RPJE_MAP_EDITOR_SelectTile(tile,is_ground_bool)

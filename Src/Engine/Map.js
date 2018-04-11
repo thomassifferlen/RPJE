@@ -49,6 +49,20 @@ class Map
       }
   }
 
+  clearMap()
+  {
+    for(var x = 0 ; x < this.nbr_Width ; x++)
+    {
+      for(var y = 0 ; y < this.nbr_Height ; y++)
+      {
+        this.mapTiles[x][y] = 99;
+        this.mapEvent[x][y] = -1;
+        this.mapObjects[x][y] = -1;
+        this.mapLights[x][y] = 0;
+      }
+    }
+  }
+
   loadMapJSON(str_JSON)
   {
     if(str_JSON != "NULL")

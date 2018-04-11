@@ -18,23 +18,25 @@ function main()
 	RPJE_JS_Obj_Load_Tile(RPJE_CONFIG_Tiles); //ground and map objects
 
 	//Ground Tiles are going from 0 to 5, we want a random ground
-	RPJE_GetEngine().currentMap.randomizeMapGround(0,5);
+	//RPJE_GetEngine().currentMap.randomizeMapGround(0,5);
 
 	//world and maps JSON format
-	RPJE_GetEngine().SetWorldMap(0, 0, WORLD_MAPS_TEST1);
+	RPJE_GetEngine().SetWorldMap(0, 0, WORLD_MAPS_TEST3);
 	RPJE_GetEngine().currentMap.loadMapJSON(RPJE_GetEngine().world[0][0]);
 
 	// ENABLE LIGHT IN AMBIANT SHADOW
-	RPJE_GetEngine().currentMap.setAmbiantLight(3);
+	/*RPJE_GetEngine().currentMap.setAmbiantLight(3);
 	RPJE_GetEngine().currentMap.setLightSource(7,5,0);
 	RPJE_GetEngine().currentMap.setLightSource(6,5,0);
 	RPJE_GetEngine().currentMap.setLightSource(6,4,0);
 	RPJE_GetEngine().currentMap.setLightSource(7,4,0);
-	RPJE_GetEngine().currentMap.EnableLights = true;
+	RPJE_GetEngine().currentMap.EnableLights = true; */
 
 	//Example of disabled tick function
 	RPJE_GetEngine().Add_Tick_Function(new RPJE_Tick_Function(1, function(){ console.log("tick"); }));
 	RPJE_GetEngine().SetEnabled_Tick_Function_By_ID(1, false); //this disable the created tick func at ID = 1
+
+	RPJE_GetEngine().player.SetPositionCoord(5,5, RPJE_GetEngine().config);
 
 	//ACTION MANAGER
 	RPJE_GetEngine().actionManager.Add_Action(new Action(0,  function(){ RPJE_GetEngine().scenarioManager.Run_ScenarioStep_By_ID(0); }, "SIMPLE FENCE"));
