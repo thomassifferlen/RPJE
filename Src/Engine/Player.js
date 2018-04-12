@@ -139,6 +139,14 @@ class Player
         }
   }
 
+  Check_Launch_If_OnMapEvent(MapToCheck, GameConfig)
+  {
+        var CoordX = Math.floor((this.position.x  + (GameConfig.tileSize / 2))/GameConfig.tileSize);
+        var CoordY = Math.floor((this.position.y  + (GameConfig.tileSize / 2))/GameConfig.tileSize);
+
+        MapToCheck.LaunchThisCoordEvent(CoordX, CoordY);
+  }
+
   Move(targetMap, GameConfig)
   {
     if(this.is_Moving)
@@ -163,6 +171,8 @@ class Player
             {
                 this.position.x += tmpspeedX;
             }
+
+            this.Check_Launch_If_OnMapEvent(targetMap, GameConfig);
 
             if( Math.abs(tmpspeedX) >= Math.abs(tmpspeedY) )
             {

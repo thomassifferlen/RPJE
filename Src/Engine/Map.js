@@ -1,3 +1,26 @@
+class MapEvent
+{
+    constructor(funct)
+    {
+        this.func = funct;
+        this.enabled = true;
+    }
+
+    run()
+    {
+        if(this.enabled)
+        {
+        	this.enabled = false;
+          	return this.func();
+        }
+    }
+
+    reload()
+    {
+    	this.enabled = true;
+    }
+}
+
 class Map
 {
   constructor(nbr_Width, nbr_Height, worldPosition_X, worldPosition_Y)
@@ -29,13 +52,49 @@ class Map
       for(var y = 0 ; y < this.nbr_Height ; y++)
       {
         this.mapTiles[x][y] = 0;
-        this.mapEvent[x][y] = -1;
+        this.mapEvent[x][y] = null;
         this.mapObjects[x][y] = -1;
         this.mapLights[x][y] = 0;
       }
     }
 
     console.log("[INFO] Map Ready");
+  }
+
+  setMapEvent( x, y, functionEvent )
+  {
+	  	 	if( x < this.nbr_Width && x >= 0 && y < this.nbr_Height && y >= 0)
+	        {
+	            this.mapEvent[x][y] = new MapEvent(functionEvent);
+	        }
+	        else
+	        {
+	          console.error("[WARN] setMapEvent() position is out of Map bounds - aborting function");
+	        }
+  }
+
+  clearMapEvent( x, y )
+  {
+	  	 	if( x < this.nbr_Width && x >= 0 && y < this.nbr_Height && y >= 0)
+	        {
+	            this.mapEvent[x][y] = null;
+	        }
+	        else
+	        {
+	          console.error("[WARN] clearMapEvent() position is out of Map bounds - aborting function");
+	        }
+  }
+
+  reloadMapEvent( x, y )
+  {
+	  	 	if( x < this.nbr_Width && x >= 0 && y < this.nbr_Height && y >= 0)
+	        {
+	            this.mapEvent[x][y].reload();
+	        }
+	        else
+	        {
+	          console.error("[WARN] clearMapEvent() position is out of Map bounds - aborting function");
+	        }
   }
 
   randomizeMapGround(rangeMin, rangeMax)
@@ -49,6 +108,20 @@ class Map
       }
   }
 
+  LaunchThisCoordEvent(x,y)
+  {
+
+  	if( x < this.nbr_Width && x >= 0 && y < this.nbr_Height && y >= 0)
+	{
+         if( this.mapEvent[x][y] != null )
+	      {
+	          return this.mapEvent[x][y].run();
+	      }
+	}
+	       
+     
+  }
+
   clearMap()
   {
     for(var x = 0 ; x < this.nbr_Width ; x++)
@@ -56,7 +129,7 @@ class Map
       for(var y = 0 ; y < this.nbr_Height ; y++)
       {
         this.mapTiles[x][y] = 99;
-        this.mapEvent[x][y] = -1;
+        this.mapEvent[x][y] = null;
         this.mapObjects[x][y] = -1;
         this.mapLights[x][y] = 0;
       }

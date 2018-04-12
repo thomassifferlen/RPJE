@@ -22,6 +22,7 @@ function main()
 
 	//world and maps JSON format
 	RPJE_GetEngine().SetWorldMap(0, 0, WORLD_MAPS_TEST3);
+	RPJE_GetEngine().SetWorldMap(0, 1, WORLD_MAPS_TEST1);
 	RPJE_GetEngine().currentMap.loadMapJSON(RPJE_GetEngine().world[0][0]);
 
 	// ENABLE LIGHT IN AMBIANT SHADOW
@@ -31,6 +32,17 @@ function main()
 	RPJE_GetEngine().currentMap.setLightSource(6,4,0);
 	RPJE_GetEngine().currentMap.setLightSource(7,4,0);
 	RPJE_GetEngine().currentMap.EnableLights = true; */
+
+	var MapEventFunc =  function()
+	{  
+		RPJE_Game_Dialog("Map Event", null);
+		RPJE_GetEngine().currentMap.clearMap();
+		RPJE_GetEngine().currentMap.randomizeMapGround(0,5);
+		RPJE_GetEngine().currentMap.loadMapJSON(RPJE_GetEngine().world[0][1]);
+		RPJE_GetEngine().player.SetPositionCoord(5,5, RPJE_GetEngine().config);
+	}
+
+	RPJE_GetEngine().currentMap.setMapEvent(10,2, MapEventFunc);
 
 	//Example of disabled tick function
 	RPJE_GetEngine().Add_Tick_Function(new RPJE_Tick_Function(1, function(){ console.log("tick"); }));

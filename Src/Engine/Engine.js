@@ -160,6 +160,8 @@ class RPJE_Engine
 
 			var is_move = this.player.Move(this.currentMap,this.config);
 
+			
+
 			this.UpdateScreen();
 
 			if(this.is_Multiplayer) // si on est en multijoueur
