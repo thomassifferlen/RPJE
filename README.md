@@ -16,8 +16,3 @@ Joystick : https://github.com/thomassifferlen/SimpleJoystick
 Stats.js : https://github.com/mrdoob/stats.js/  
 jQuery : https://jquery.com/  
 Tornado : https://github.com/tornadoweb/tornado
-
-## [ Thomas SIFFERLEN ]
-http://www.thomassifferlen.fr/  
-http://www.thomassifferlen.fr/Blog/  
-https://github.com/thomassifferlen
